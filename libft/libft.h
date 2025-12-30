@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 13:44:49 by victode-          #+#    #+#             */
-/*   Updated: 2025/12/03 22:38:53 by victode-         ###   ########.fr       */
+/*   Updated: 2025/12/29 17:40:28 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdarg.h>
+# include <limits.h>
 # include <stdio.h>
 # include <fcntl.h>
 

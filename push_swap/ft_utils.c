@@ -1,36 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/20 13:44:06 by victode-          #+#    #+#             */
-/*   Updated: 2025/12/30 17:20:19 by victode-         ###   ########.fr       */
+/*   Created: 2025/12/30 16:31:50 by victode-          #+#    #+#             */
+/*   Updated: 2025/12/30 17:20:41 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-int	ft_atoi(const char *nptr)
+void	ft_error(void)
 {
-	int		num;
-	int		sign;
-
-	num = 0;
-	sign = 1;
-	while (ft_isspace(*nptr))
-		nptr++;
-	if (ft_issignal(*nptr))
-	{
-		if (*nptr == '-')
-			sign = -sign;
-		nptr++;
-	}
-	while (ft_isdigit(*nptr))
-	{
-		num = num * 10 + (*nptr - '0');
-		nptr++;
-	}
-	return (sign * num);
+	write (1, "Error\n", 6);
+	exit(ERROR);
 }

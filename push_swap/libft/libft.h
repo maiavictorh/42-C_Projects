@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 13:44:49 by victode-          #+#    #+#             */
-/*   Updated: 2025/12/26 16:21:48 by victode-         ###   ########.fr       */
+/*   Updated: 2025/12/30 17:20:09 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # endif
 
 typedef unsigned long long	t_ull;
+typedef long long			t_ll;
 typedef unsigned int		t_ui;
 typedef unsigned char		t_uc;
 typedef struct s_list
@@ -50,6 +51,8 @@ int		ft_isdigit(int c);
 int		ft_isalnum(int c);
 int		ft_isascii(int c);
 int		ft_isprint(int c);
+int		ft_isspace(int c);
+int		ft_issignal(int c);
 
 /*============= Memory manipulation functions =============*/
 

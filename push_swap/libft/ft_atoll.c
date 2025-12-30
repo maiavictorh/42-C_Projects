@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atoll.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/20 13:44:06 by victode-          #+#    #+#             */
-/*   Updated: 2025/12/30 17:20:19 by victode-         ###   ########.fr       */
+/*   Created: 2025/12/30 17:20:51 by victode-          #+#    #+#             */
+/*   Updated: 2025/12/30 17:37:39 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *nptr)
+t_ll	ft_atoll(const char *nptr)
 {
-	int		num;
+	t_ll	num;
 	int		sign;
 
 	num = 0;

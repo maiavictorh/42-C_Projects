@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 13:44:06 by victode-          #+#    #+#             */
-/*   Updated: 2025/11/12 13:56:38 by victode-         ###   ########.fr       */
+/*   Updated: 2025/12/30 14:25:02 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ int	ft_atoi(const char *nptr)
 	}
 	return (sign * num);
 }
-/* 
+/*
 int main(void)
 {
-	char *s = "\t\r\f\v   -1234abcde567";
+	char *s = "\t\r\f\v   2147483648";
 
 	ft_printf("Result: %d;\n", ft_atoi(s));
 }
- */
+*/

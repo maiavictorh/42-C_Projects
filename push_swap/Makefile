@@ -6,7 +6,7 @@
 #    By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/25 22:40:56 by victode-          #+#    #+#              #
-#    Updated: 2025/12/27 16:40:58 by victode-         ###   ########.fr        #
+#    Updated: 2026/01/01 18:40:51 by victode-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,13 +18,13 @@ SRCS= push_swap.c
 
 # Libft files and objects to compile
 LIB_SRCS= libft/ft_isalpha.c libft/ft_isdigit.c libft/ft_isalnum.c libft/ft_isascii.c \
-		libft/ft_isprint.c libft/ft_strlen.c libft/ft_memset.c libft/ft_bzero.c \
-		libft/ft_memcpy.c libft/ft_memmove.c libft/ft_strlcpy.c libft/ft_strlcat.c \
-		libft/ft_toupper.c libft/ft_tolower.c libft/ft_strchr.c libft/ft_strrchr.c \
-		libft/ft_strncmp.c libft/ft_memchr.c libft/ft_memcmp.c libft/ft_strnstr.c \
-		libft/ft_atoi.c libft/ft_calloc.c libft/ft_strdup.c libft/ft_substr.c \
-		libft/ft_strjoin.c libft/ft_strtrim.c libft/ft_split.c libft/ft_itoa.c \
-		libft/ft_strmapi.c libft/ft_striteri.c libft/ft_putchar_fd.c \
+		libft/ft_isprint.c libft/ft_isspace.c libft/ft_strlen.c libft/ft_memset.c \
+		libft/ft_bzero.c libft/ft_memcpy.c libft/ft_memmove.c libft/ft_strlcpy.c \
+		libft/ft_strlcat.c libft/ft_toupper.c libft/ft_tolower.c libft/ft_strchr.c \
+		libft/ft_strrchr.c libft/ft_strncmp.c libft/ft_memchr.c libft/ft_memcmp.c \
+		libft/ft_strnstr.c libft/ft_atoi.c libft/ft_calloc.c libft/ft_strdup.c \
+		libft/ft_substr.c libft/ft_strjoin.c libft/ft_strtrim.c libft/ft_split.c \
+		libft/ft_itoa.c libft/ft_strmapi.c libft/ft_striteri.c libft/ft_putchar_fd.c \
 		libft/ft_putstr_fd.c libft/ft_putendl_fd.c libft/ft_putnbr_fd.c \
 		libft/ft_lstnew.c libft/ft_lstadd_front.c libft/ft_lstsize.c \
 		libft/ft_lstlast.c libft/ft_lstadd_back.c libft/ft_lstdelone.c \
@@ -44,9 +44,14 @@ RM= rm -f
 # Rule: all = push_swap
 all: $(NAME)
 
+# Compile libft and main program
 $(NAME): $(OBJS) $(LIB_OBJS)
 	$(COMPRESS) libft.a $(LIB_OBJS)
 	$(CC_FLAGS) $(SRCS) libft.a -o $(NAME)
+
+# Compile and compress libft files
+libft.a: $(LIB_OBJS)
+		$(COMPRESS) libft.a $(LIB_OBJS)
 
 # Compile the objects
 %.o: %.c

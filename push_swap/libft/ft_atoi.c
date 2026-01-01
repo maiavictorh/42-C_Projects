@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 13:44:06 by victode-          #+#    #+#             */
-/*   Updated: 2025/12/30 17:20:19 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/01 18:38:51 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_atoi(const char *nptr)
 	sign = 1;
 	while (ft_isspace(*nptr))
 		nptr++;
-	if (ft_issignal(*nptr))
+	if (*nptr == '+' || *nptr == '-')
 	{
 		if (*nptr == '-')
 			sign = -sign;

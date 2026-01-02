@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atoi_custom.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/20 13:44:06 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/02 01:34:10 by victode-         ###   ########.fr       */
+/*   Created: 2026/01/02 02:01:22 by victode-          #+#    #+#             */
+/*   Updated: 2026/01/02 02:40:43 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-/**
- * @brief Converts a string to an integer.
- *
- * @param nptr The string representing the number.
- * @return The converted integer value.
- */
-int	ft_atoi(const char *nptr)
+#include "push_swap.h"
+
+static int	ft_verif_overflow(char digit, int num, int sign)
 {
-	int		num;
-	int		sign;
+	t_ll	n;
+
+	n = num;
+	if ((sign == 1 && n > ((INT_MAX - (digit - '0')) / 10))
+		|| (sign == -1 && n > (-(t_ll)INT_MIN - (digit - '0')) / 10))
+		return (1);
+	return (0);
+}
+
+int	ft_atoi_custom(const char *nptr)
+{
+	int	num;
+	int	sign;
 
 	num = 0;
 	sign = 1;
@@ -29,21 +35,25 @@ int	ft_atoi(const char *nptr)
 	if (*nptr == '+' || *nptr == '-')
 	{
 		if (*nptr == '-')
-			sign = -sign;
+			sign = -1;
 		nptr++;
 	}
+	if (!ft_isdigit(*nptr))
+		ft_error();
 	while (ft_isdigit(*nptr))
 	{
+		if (ft_verif_overflow(*nptr, num, sign))
+			ft_error();
 		num = num * 10 + (*nptr - '0');
 		nptr++;
 	}
+	if (*nptr != '\0')
+		ft_error();
 	return (sign * num);
 }
-/*
+/* 
 int main(void)
 {
-	char *s = "\t\r\f\v   2147483648";
-
-	ft_printf("Result: %d;\n", ft_atoi(s));
+	ft_printf("%d\n", ft_atoi_custom("+60"));
 }
-*/
+ */

@@ -1,29 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi_custom.c                                   :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 02:01:22 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/02 16:51:23 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/02 21:16:27 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	ft_verif_overflow(char digit, int num, int sign)
+int	ft_count_numbers(const char *s)
 {
-	t_ll	n;
+	int	count;
+
+	count = 0;
+	while (*s)
+	{
+		while (*s && !ft_isdigit(*s))
+			s++;
+		if (*s && ft_isdigit(*s))
+			count++;
+		while (*s && ft_isdigit(*s))
+			s++;
+	}
+	return (count);
+}
+
+int	ft_verif_overflow(char digit, int num, int sign)
+{
+	t_ull	n;
 
 	n = num;
-	if ((sign == 1 && n > ((INT_MAX - (digit - '0')) / 10))
-		|| (sign == -1 && n > (-(t_ll)INT_MIN - (digit - '0')) / 10))
+	if (((sign == 1 && n > ((INT_MAX - (*digit - '0')) / 10))
+			|| (sign == -1 && n > (-(t_ll)INT_MIN - (digit - '0')) / 10)))
 		return (1);
 	return (0);
 }
 
-int	ft_atoi_custom(const char *nptr)
+int	ft_atoi(const char *nptr)
 {
 	int	num;
 	int	sign;
@@ -54,6 +71,6 @@ int	ft_atoi_custom(const char *nptr)
 /*
 int main(void)
 {
-	ft_printf("%d\n", ft_atoi_custom("aidhf"));
+	printf("%d\n", ft_atoi("2147483648"));
 }
 */

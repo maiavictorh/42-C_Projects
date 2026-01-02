@@ -6,15 +6,15 @@
 #    By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/25 22:40:56 by victode-          #+#    #+#              #
-#    Updated: 2026/01/02 18:21:35 by victode-         ###   ########.fr        #
+#    Updated: 2026/01/02 22:16:46 by victode-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Library name
+# Program name
 NAME= push_swap
 
 # Source files and objects
-SRCS= push_swap.c ft_atoi.c ft_lst.c ft_utils.c
+SRCS= push_swap.c ft_atoi.c ft_lst.c ft_utils.c ft_split.c
 OBJS= $(SRCS:.c=.o)
 
 # Compile and Flag commands
@@ -26,11 +26,11 @@ RM= rm -f
 # Rule: all = push_swap
 all: $(NAME)
 
-# Compile libft and main program
+# Compile objects into binary
 $(NAME): $(OBJS)
 	$(CC_FLAGS) $(OBJS) -o $(NAME)
 
-# Compile the objects
+# Compile files into objects
 %.o: %.c
 	$(CC_FLAGS) -c $< -o $@
 

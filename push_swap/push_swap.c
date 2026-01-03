@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 16:39:19 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/02 22:12:57 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/03 01:41:47 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_single_arg(char *arg, t_stack **stack)
 	char	**args;
 
 	i = 0;
-	args = ft_split(arg, " \t");
+	args = ft_split(arg, ' ');
 	while (i < ft_count_numbers(arg))
 		ft_lstadd_back(stack, &ft_lstnew(ft_atoi(args[i++])));
 }

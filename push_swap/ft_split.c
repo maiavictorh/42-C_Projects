@@ -6,58 +6,42 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 19:18:13 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/02 21:54:01 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/03 01:47:48 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	is_sep(char c, char *charset)
+static int	ft_word_len(char *s, char c)
 {
 	int	i;
 
 	i = 0;
-	while (charset[i])
-	{
-		if (c == charset[i])
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-static int	word_len(char *str, char *charset)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] && is_sep(str[i], charset) == 0)
+	while (s[i] && s[i] != c)
 		i++;
 	return (i);
 }
 
-static int	word_count(char *str, char *charset)
+static t_ull	ft_word_count(char *s, char c)
 {
-	int	i;
-	int	count;
+	t_ull	i;
+	t_ull	count;
 
 	i = 0;
 	count = 0;
-	while (str[i])
+	while (s[i])
 	{
-		while (str[i] && is_sep(str[i], charset) == 1)
+		while (s[i] && s[i] == c)
 			i++;
-		if (str[i] && is_sep(str[i], charset) == 0)
-		{
+		if (s[i] && s[i] != c)
 			count++;
-			while (str[i] && is_sep(str[i], charset) == 0)
-				i++;
-		}
+		while (s[i] && s[i] != c)
+			i++;
 	}
 	return (count);
 }
 
-static char	*ft_strndup(char *str, int n)
+static char	*ft_strndup(char *s, int n)
 {
 	int		i;
 	char	*dup;
@@ -66,40 +50,47 @@ static char	*ft_strndup(char *str, int n)
 	dup = (char *)malloc(n + 1);
 	if (!dup)
 		return (NULL);
-	while (str[i] && i < n)
+	while (s[i] && i < n)
 	{
-		dup[i] = str[i];
+		dup[i] = s[i];
 		i++;
 	}
 	dup[i] = 0;
 	return (dup);
 }
 
-char	**ft_split(char *str, char *charset)
+static char	**split_words(char *s, char c, char **split)
 {
-	int		s;
-	int		i;
-	int		len;
-	char	**split;
+	t_ull	i;
+	t_ull	j;
+	t_ull	wd_len;
 
-	s = 0;
 	i = 0;
-	if (!str)
-		return (NULL);
-	split = malloc(sizeof(char *) * (word_count(str, charset)) + 1);
-	if (!split)
-		return (NULL);
-	while (str[i])
+	j = 0;
+	while (s[i])
 	{
-		while (str[i] && is_sep(str[i], charset) == 1)
+		while (s[i] && s[i] == c)
 			i++;
-		if (str[i] && is_sep(str[i], charset) == 0)
+		if (s[i] && s[i] != c)
 		{
-			len = word_len(&str[i], charset);
-			split[s++] = ft_strndup(&str[i], len);
-			i += len;
+			wd_len = ft_word_len(s + i, c);
+			split[j] = ft_strndup(s + i, wd_len);
+			if (!split[j])
+				return (free_split(split), NULL);
+			j++;
+			i += wd_len;
 		}
 	}
-	split[s] = NULL;
+	split[j] = NULL;
 	return (split);
+}
+
+char	**ft_split(char *s, char c)
+{
+	char	**split;
+
+	split = (char **)malloc(sizeof(char *) * (ft_word_count(s, c) + 1));
+	if (!split)
+		return (NULL);
+	return (split_words(s, c, split));
 }

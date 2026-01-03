@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/30 16:31:50 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/02 16:53:38 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/03 01:36:25 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,17 @@ void	ft_error(void)
 	exit(EXIT_FAILURE);
 }
 
-int	ft_isspace(int c)
-{
-	return (c == ' ' || (c >= '\t' && c <= '\r'));
-}
-
 int	ft_isdigit(int c)
 {
 	return (c >= '0' && c <= '9');
+}
+
+void	free_split(char **split)
+{
+	t_ull	i;
+
+	i = 0;
+	while (split[i])
+		free(split[i++]);
+	free(split);
 }

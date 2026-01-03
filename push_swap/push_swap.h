@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 16:38:51 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/02 21:56:06 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/03 01:40:57 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ typedef struct s_stack
 /* ======== Utils ======== */
 
 void	ft_error(void);
-int		ft_isspace(int c);
 int		ft_isdigit(int c);
 int		ft_atoi(const char *nptr);
 int		ft_count_numbers(const char *s);
-char	**ft_split(char *str, char *charset);
+void	free_split(char **split);
+char	**ft_split(char *s, char c);
 
 /* ======== list functions ======== */
 

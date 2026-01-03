@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 02:01:22 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/02 21:16:27 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/03 01:43:58 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ int	ft_count_numbers(const char *s)
 
 int	ft_verif_overflow(char digit, int num, int sign)
 {
-	t_ull	n;
+	t_ll	n;
 
 	n = num;
-	if (((sign == 1 && n > ((INT_MAX - (*digit - '0')) / 10))
+	if (((sign == 1 && n > ((INT_MAX - (digit - '0')) / 10))
 			|| (sign == -1 && n > (-(t_ll)INT_MIN - (digit - '0')) / 10)))
 		return (1);
 	return (0);
@@ -47,7 +47,7 @@ int	ft_atoi(const char *nptr)
 
 	num = 0;
 	sign = 1;
-	while (ft_isspace(*nptr))
+	while (*nptr == ' ' || (*nptr >= '\t' && *nptr <= '\r'))
 		nptr++;
 	if (*nptr == '+' || *nptr == '-')
 	{

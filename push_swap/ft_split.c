@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 19:18:13 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/03 01:47:48 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/03 22:27:41 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static char	**split_words(char *s, char c, char **split)
 			wd_len = ft_word_len(s + i, c);
 			split[j] = ft_strndup(s + i, wd_len);
 			if (!split[j])
-				return (free_split(split), NULL);
+				return (ft_free_split(split), NULL);
 			j++;
 			i += wd_len;
 		}

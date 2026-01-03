@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 17:06:13 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/03 17:21:50 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/03 22:17:01 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,21 @@ void	ft_lstadd_front(t_stack **stack, t_stack *new_node)
 {
 	new_node->next = *stack;
 	*stack = new_node;
+}
+
+void	ft_verif_double(t_stack *stack)
+{
+	t_stack	*temp;
+
+	while (stack)
+	{
+		temp = stack->next;
+		while (temp)
+		{
+			if (stack->data == temp->data)
+				ft_error();
+			temp = temp->next;
+		}
+		stack = stack->next;
+	}
 }

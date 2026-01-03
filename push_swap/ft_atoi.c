@@ -6,30 +6,37 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 02:01:22 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/03 01:43:58 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/03 22:24:59 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_count_numbers(const char *s)
+int	ft_count_numbers(char *s)
 {
+	int	i;
 	int	count;
 
+	i = 0;
 	count = 0;
-	while (*s)
+	while (s[i])
 	{
-		while (*s && !ft_isdigit(*s))
-			s++;
-		if (*s && ft_isdigit(*s))
+		while (s[i] && (s[i] == ' ' || (s[i] >= '\t' && s[i] <= '\r')))
+			i++;
+		if (s[i] == '+' || s[i] == '-')
+		{
+			if (!ft_isdigit(s[++i]))
+				return (0);
+		}
+		if (s[i] && ft_isdigit(s[i]))
 			count++;
-		while (*s && ft_isdigit(*s))
-			s++;
+		while (s[i] && ft_isdigit(s[i]))
+			i++;
 	}
 	return (count);
 }
 
-int	ft_verif_overflow(char digit, int num, int sign)
+static int	ft_verif_overflow(char digit, int num, int sign)
 {
 	t_ll	n;
 
@@ -40,7 +47,7 @@ int	ft_verif_overflow(char digit, int num, int sign)
 	return (0);
 }
 
-int	ft_atoi(const char *nptr)
+int	ft_atoi(char *nptr)
 {
 	int	num;
 	int	sign;

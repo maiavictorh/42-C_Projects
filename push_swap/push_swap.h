@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 16:38:51 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/03 17:22:03 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/03 22:43:31 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,17 @@ typedef struct s_stack
 
 void	ft_error(void);
 int		ft_isdigit(int c);
-int		ft_atoi(const char *nptr);
-int		ft_count_numbers(const char *s);
-void	free_split(char **split);
+int		ft_atoi(char *nptr);
+int		ft_count_numbers(char *s);
+void	ft_free_split(char **split);
+void	ft_free_stack(char **stack);
 char	**ft_split(char *s, char c);
 
-/* ======== list functions ======== */
+/* ======== Stack operations ======== */
 
 t_stack	*ft_new_node(int data);
 t_stack	*ft_last_node(t_stack *node);
+void	ft_verif_double(t_stack *stack);
 void	ft_lstadd_back(t_stack **stack, t_stack *new_node);
 void	ft_lstadd_front(t_stack **stack, t_stack *new_node);
 

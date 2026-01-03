@@ -6,49 +6,48 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 17:06:13 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/02 21:23:21 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/03 17:21:50 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*ft_lstnew(int data)
+t_stack	*ft_new_node(int data)
 {
-	t_stack	*stack;
+	t_stack	*node;
 
-	stack = (t_stack *)malloc(sizeof(t_stack));
-	if (!stack)
+	node = (t_stack *)malloc(sizeof(t_stack));
+	if (!node)
 		return (NULL);
-	stack->data = data;
-	stack->next = NULL;
-	return (stack);
+	node->data = data;
+	node->next = NULL;
+	return (node);
 }
 
-t_stack	*ft_lstlast(t_stack *stack)
+t_stack	*ft_last_node(t_stack *node)
 {
-	if (!stack)
+	if (!node)
 		return (NULL);
-	while (stack->next)
-		stack = stack->next;
-	return (stack);
+	while (node->next)
+		node = node->next;
+	return (node);
 }
 
-void	ft_lstadd_back(t_stack **stack, t_stack *new)
+void	ft_lstadd_back(t_stack **stack, t_stack *new_node)
 {
 	t_stack	*last;
 
 	if (!*stack)
 	{
-		*stack = new;
+		*stack = new_node;
 		return ;
 	}
-	while (last->next)
-		last = last->next;
-	last->next = new;
+	last = ft_last_node(*stack);
+	last->next = new_node;
 }
 
-void	ft_lstadd_front(t_stack **stack, t_stack *new)
+void	ft_lstadd_front(t_stack **stack, t_stack *new_node)
 {
-	new->next = *stack;
-	*stack = new;
+	new_node->next = *stack;
+	*stack = new_node;
 }

@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/30 16:31:50 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/03 22:01:45 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/04 13:43:00 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ int	ft_isdigit(int c)
 	return (c >= '0' && c <= '9');
 }
 
+int	ft_isspace(int c)
+{
+	return (c == ' ' || (c >= '\t' && c <= '\r'));
+}
+
 void	ft_free_split(char **split)
 {
 	t_ull	i;
@@ -33,4 +38,4 @@ void	ft_free_split(char **split)
 	free(split);
 }
 
-void	ft_free_stack(char **stack);
+void	ft_free_stack(t_stack **stack);

@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 02:01:22 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/03 22:24:59 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/04 13:42:22 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_count_numbers(char *s)
 	count = 0;
 	while (s[i])
 	{
-		while (s[i] && (s[i] == ' ' || (s[i] >= '\t' && s[i] <= '\r')))
+		while (s[i] && ft_isspace(s[i]))
 			i++;
 		if (s[i] == '+' || s[i] == '-')
 		{
@@ -32,6 +32,8 @@ int	ft_count_numbers(char *s)
 			count++;
 		while (s[i] && ft_isdigit(s[i]))
 			i++;
+		if (s[i] && !ft_isspace(s[i]))
+			return (0);
 	}
 	return (count);
 }
@@ -54,7 +56,7 @@ int	ft_atoi(char *nptr)
 
 	num = 0;
 	sign = 1;
-	while (*nptr == ' ' || (*nptr >= '\t' && *nptr <= '\r'))
+	while (ft_isspace(*nptr))
 		nptr++;
 	if (*nptr == '+' || *nptr == '-')
 	{
@@ -75,9 +77,10 @@ int	ft_atoi(char *nptr)
 		ft_error();
 	return (sign * num);
 }
-/*
+
 int main(void)
 {
-	printf("%d\n", ft_atoi("2147483648"));
+	char *s = "1-1";
+	printf("%d\n", ft_count_numbers(s));
+	printf("%d\n", ft_atoi(s));
 }
-*/

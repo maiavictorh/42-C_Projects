@@ -6,39 +6,30 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 16:39:19 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/03 22:34:56 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/05 19:14:06 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/* This function is just for test purpose */
 void	print_stack(t_stack *stack)
 {
-	printf("Init A:\n");
+	printf("\nInit A:\n");
 	while (stack)
 	{
 		printf(" %d\n", stack->data);
 		stack = stack->next;
 	}
-	printf("===\n A\n");
+	printf("===\n A\n\n");
 }
 
-void	ft_single_arg(char *arg, t_stack **stack)
+void	ft_handle_args(int argc, char **argv, t_stack **stack)
 {
 	int		i;
-	char	**args;
-
-	i = 0;
-	args = ft_split(arg, ' ');
-	while (i < ft_count_numbers(arg))
-		ft_lstadd_back(stack, ft_new_node(ft_atoi(args[i++])));
-	ft_free_split(args);
-}
-
-void	ft_handle_args(int argc, char **argv, t_stack **stack_a)
-{
-	int		i;
+	int		j;
 	int		num_count;
+	char	**args;
 
 	i = 1;
 	while (i < argc)
@@ -46,14 +37,20 @@ void	ft_handle_args(int argc, char **argv, t_stack **stack_a)
 		num_count = ft_count_numbers(argv[i]);
 		// printf("Num count: %d\n", num_count);
 		if (num_count == 1)
-			ft_lstadd_back(stack_a, ft_new_node(ft_atoi(argv[i++])));
+			ft_lstadd_back(stack, ft_new_node(ft_atoi(argv[i++], stack)));
 		else if (num_count > 1)
-			ft_single_arg(argv[i++], stack_a);
+		{
+			j = 0;
+			args = ft_split(argv[i], ' ');
+			while (j < num_count)
+				ft_lstadd_back(stack, ft_new_node(ft_atoi(args[j++], stack)));
+			ft_free_split(args);
+			i++;
+		}
 		else
-			ft_error();
+			ft_free_on_error(stack);
 	}
-	ft_verif_double(*stack_a);
-	print_stack(*stack_a);
+	ft_verif_double(*stack);
 }
 
 int	main(int argc, char **argv)
@@ -65,11 +62,15 @@ int	main(int argc, char **argv)
 	(void)stack_b;
 	if (argc > 1)
 	{
+
 		printf("\n");
 		for (int i = 0; i < argc; i++)
 			printf("%s ", argv[i]);
 		printf("\n\n");
+
 		ft_handle_args(argc, argv, &stack_a);
+		print_stack(stack_a);
+		ft_lstclear(&stack_a);
 	}
 	else
 		return (-1);

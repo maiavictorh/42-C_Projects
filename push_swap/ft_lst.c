@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 17:06:13 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/03 22:17:01 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/05 19:13:45 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,47 +24,57 @@ t_stack	*ft_new_node(int data)
 	return (node);
 }
 
-t_stack	*ft_last_node(t_stack *node)
-{
-	if (!node)
-		return (NULL);
-	while (node->next)
-		node = node->next;
-	return (node);
-}
-
 void	ft_lstadd_back(t_stack **stack, t_stack *new_node)
 {
 	t_stack	*last;
 
+	printf("adding %d\n", new_node->data);
 	if (!*stack)
 	{
 		*stack = new_node;
 		return ;
 	}
-	last = ft_last_node(*stack);
+	last = *stack;
+	while (last->next)
+		last = last->next;
 	last->next = new_node;
-}
-
-void	ft_lstadd_front(t_stack **stack, t_stack *new_node)
-{
-	new_node->next = *stack;
-	*stack = new_node;
+	// printf("last added\n");
 }
 
 void	ft_verif_double(t_stack *stack)
 {
+	t_stack	*cursor;
 	t_stack	*temp;
 
-	while (stack)
+	cursor = stack;
+	while (cursor)
 	{
-		temp = stack->next;
+		temp = cursor->next;
 		while (temp)
 		{
-			if (stack->data == temp->data)
+			if (cursor->data == temp->data)
+			{
+				ft_lstclear(&stack);
 				ft_error();
+			}
 			temp = temp->next;
 		}
-		stack = stack->next;
+		cursor = cursor->next;
+	}
+}
+
+void	ft_lstclear(t_stack **stack)
+{
+	t_stack	*next;
+
+	// printf("starting remove proceadure\n");
+	if (!stack)
+		return ;
+	while (*stack)
+	{
+		// printf("freeing %d\n", (*stack)->data);
+		next = (*stack)->next;
+		free(*stack);
+		*stack = next;
 	}
 }

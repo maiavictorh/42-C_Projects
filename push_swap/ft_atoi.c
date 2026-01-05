@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 02:01:22 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/04 13:42:22 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/05 18:31:47 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int	ft_verif_overflow(char digit, int num, int sign)
 	return (0);
 }
 
-int	ft_atoi(char *nptr)
+int	ft_atoi(char *nptr, t_stack **stack)
 {
 	int	num;
 	int	sign;
@@ -65,22 +65,23 @@ int	ft_atoi(char *nptr)
 		nptr++;
 	}
 	if (!ft_isdigit(*nptr))
-		ft_error();
+		ft_free_on_error(stack);
 	while (ft_isdigit(*nptr))
 	{
 		if (ft_verif_overflow(*nptr, num, sign))
-			ft_error();
+			ft_free_on_error(stack);
 		num = num * 10 + (*nptr - '0');
 		nptr++;
 	}
 	if (*nptr != '\0')
-		ft_error();
+		ft_free_on_error(stack);
 	return (sign * num);
 }
-
+/*
 int main(void)
 {
 	char *s = "1-1";
 	printf("%d\n", ft_count_numbers(s));
-	printf("%d\n", ft_atoi(s));
+	printf("%d\n", ft_atoi(s, ));
 }
+*/

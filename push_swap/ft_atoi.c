@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 02:01:22 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/05 18:31:47 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/06 00:15:38 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int	ft_verif_overflow(char digit, int num, int sign)
 	return (0);
 }
 
-int	ft_atoi(char *nptr, t_stack **stack)
+int	ft_atoi(char *nptr, int *result)
 {
 	int	num;
 	int	sign;
@@ -65,23 +65,28 @@ int	ft_atoi(char *nptr, t_stack **stack)
 		nptr++;
 	}
 	if (!ft_isdigit(*nptr))
-		ft_free_on_error(stack);
+		return (0);
 	while (ft_isdigit(*nptr))
 	{
 		if (ft_verif_overflow(*nptr, num, sign))
-			ft_free_on_error(stack);
+			return (0);
 		num = num * 10 + (*nptr - '0');
 		nptr++;
 	}
 	if (*nptr != '\0')
-		ft_free_on_error(stack);
-	return (sign * num);
+		return (0);
+	return (*result = sign * num, 1);
 }
 /*
 int main(void)
 {
-	char *s = "1-1";
+	char *s = "  -123";
+	int result;
+	
 	printf("%d\n", ft_count_numbers(s));
-	printf("%d\n", ft_atoi(s, ));
+	if (ft_atoi(s, &result) == 1)
+    	printf("Número: %d\n", result);  // -123
+	else
+    	printf("Erro na conversão\n");
 }
 */

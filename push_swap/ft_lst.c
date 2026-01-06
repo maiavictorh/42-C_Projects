@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 17:06:13 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/06 15:50:54 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/06 22:34:55 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	ft_lstadd_back(t_stack **stack, t_stack *new_node)
 {
 	t_stack	*last;
 
-	// printf("adding %d\n", new_node->data);
 	if (!*stack)
 	{
 		*stack = new_node;
@@ -66,12 +65,10 @@ void	ft_lstclear(t_stack **stack)
 {
 	t_stack	*next;
 
-	// printf("starting remove procedure\n");
 	if (!stack)
 		return ;
 	while (*stack)
 	{
-		// printf("freeing %d\n", (*stack)->data);
 		next = (*stack)->next;
 		free(*stack);
 		*stack = next;

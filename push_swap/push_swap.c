@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 16:39:19 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/06 18:34:20 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/06 23:26:54 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	print_stack(t_stack *stack)
 		printf(" %d\n", stack->data);
 		stack = stack->next;
 	}
-	printf("===\n A\n\n");
+	printf("===\n A\n_________________________________\n\n");
 }
 
 void	ft_single_arg(char *arg, t_stack **stack, int num_count, int value)
@@ -52,7 +52,6 @@ void	ft_handle_args(int argc, char **argv, t_stack **stack)
 	while (i < argc)
 	{
 		num_count = ft_count_numbers(argv[i]);
-		// printf("Num count: %d\n", num_count);
 		if (num_count == 1)
 		{
 			if (!ft_atoi(argv[i], &value))
@@ -77,10 +76,6 @@ int	main(int argc, char **argv)
 	(void)stack_b;
 	if (argc > 1)
 	{
-		// printf("\n");
-		// for (int i = 0; i < argc; i++)
-		// 	printf("%s ", argv[i]);
-		// printf("\n\n");
 		ft_handle_args(argc, argv, &stack_a);
 		printf("\nInit A:\n");
 		print_stack(stack_a);
@@ -89,6 +84,10 @@ int	main(int argc, char **argv)
 		print_stack(stack_a);
 		ft_ra(&stack_a);
 		printf("\n");
+		print_stack(stack_a);
+		ft_rra(&stack_a);
+		printf("\n");
+		print_stack(stack_a);
 		ft_lstclear(&stack_a);
 	}
 	else

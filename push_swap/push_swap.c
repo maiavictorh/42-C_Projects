@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 16:39:19 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/06 01:14:13 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/06 15:45:43 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ int	main(int argc, char **argv)
 		// 	printf("%s ", argv[i]);
 		// printf("\n\n");
 		ft_handle_args(argc, argv, &stack_a);
+		print_stack(stack_a);
+		ft_sa(&stack_a);
 		print_stack(stack_a);
 		ft_lstclear(&stack_a);
 	}

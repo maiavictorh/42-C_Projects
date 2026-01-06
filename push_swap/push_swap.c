@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 16:39:19 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/06 15:45:43 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/06 18:34:20 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 /* This function is for test purpose */
 void	print_stack(t_stack *stack)
 {
-	printf("\nInit A:\n");
 	while (stack)
 	{
 		printf(" %d\n", stack->data);
@@ -83,9 +82,13 @@ int	main(int argc, char **argv)
 		// 	printf("%s ", argv[i]);
 		// printf("\n\n");
 		ft_handle_args(argc, argv, &stack_a);
+		printf("\nInit A:\n");
 		print_stack(stack_a);
 		ft_sa(&stack_a);
+		printf("\n");
 		print_stack(stack_a);
+		ft_ra(&stack_a);
+		printf("\n");
 		ft_lstclear(&stack_a);
 	}
 	else

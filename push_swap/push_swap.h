@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 16:38:51 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/06 15:46:32 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/06 18:16:54 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,10 @@ void	ft_swap(t_stack **stack);
 void	ft_sa(t_stack **stack_a);
 void	ft_sb(t_stack **stack_b);
 void	ft_ss(t_stack **stack_a, t_stack **stack_b);
+void	ft_rotate(t_stack **stack);
+void	ft_ra(t_stack **stack_a);
+void	ft_rb(t_stack **stack_b);
+void	ft_rr(t_stack **stack_a, t_stack **stack_b);
 
 /* ======== Extra ======== */
 void	print_stack(t_stack *stack);

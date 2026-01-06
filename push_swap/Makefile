@@ -6,7 +6,7 @@
 #    By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/25 22:40:56 by victode-          #+#    #+#              #
-#    Updated: 2026/01/06 15:43:22 by victode-         ###   ########.fr        #
+#    Updated: 2026/01/06 18:17:38 by victode-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 NAME= push_swap
 
 # Source files and objects
-SRCS= push_swap.c ft_atoi.c ft_lst.c ft_utils.c ft_split.c ft_swap.c
+SRCS= push_swap.c ft_atoi.c ft_lst.c ft_utils.c ft_split.c ft_swap.c ft_rotate.c
 OBJS= $(SRCS:.c=.o)
 
 # Compile and Flag commands

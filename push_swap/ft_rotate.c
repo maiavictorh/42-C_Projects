@@ -1,48 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_swap.c                                          :+:      :+:    :+:   */
+/*   ft_rotate.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/06 13:58:45 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/06 17:45:39 by victode-         ###   ########.fr       */
+/*   Created: 2026/01/06 17:27:40 by victode-          #+#    #+#             */
+/*   Updated: 2026/01/06 19:00:11 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_swap(t_stack **stack)
+void	ft_rotate(t_stack **stack)
 {
 	t_stack	*first;
-	t_stack	*third;
+	t_stack	*last;
 
 	if (stack && *stack && (*stack)->next)
 	{
-		third = (*stack)->next;
-		third = third->next;
-		first = *stack;
-		*stack = (*stack)->next;
-		first->next = third;
-		(*stack)->next = first;
 	}
+	write (1, "Rotate successfull!\n", 20);
 }
 
-void	ft_sa(t_stack **stack_a)
+void	ft_ra(t_stack **stack_a)
 {
-	ft_swap(stack_a);
-	write (1, "sa\n", 3);
+	ft_rotate(stack_a);
+	write (1, "ra\n", 3);
 }
 
-void	ft_sb(t_stack **stack_b)
+void	ft_rb(t_stack **stack_b)
 {
-	ft_swap(stack_b);
-	write (1, "sb\n", 3);	
+	ft_rotate(stack_b);
+	write (1, "rb\n", 3);
 }
 
-void	ft_ss(t_stack **stack_a, t_stack **stack_b)
+void	ft_rr(t_stack **stack_a, t_stack **stack_b)
 {
-	ft_sa(stack_a);
-	ft_sb(stack_b);
-	write (1, "ss\n", 3);
+	ft_rotate(stack_a);
+	ft_rotate(stack_b);
+	write (1, "rr\n", 3);
 }

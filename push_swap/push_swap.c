@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 16:39:19 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/07 18:21:13 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/07 20:48:12 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void	ft_handle_args(int argc, char **argv, t_stack **stack)
 	while (i < argc)
 	{
 		num_count = ft_count_numbers(argv[i]);
+		// printf("num: %d\n", num_count);
 		if (num_count == 1)
 		{
 			if (!ft_atoi(argv[i], &value))
@@ -104,9 +105,11 @@ int	main(int argc, char **argv)
 	stack_b = NULL;
 	if (argc > 1)
 	{
+		for (int i = 0; i < argc; i++)
+			printf("\"%s\" ", argv[i]);
+		printf("\n");
 		ft_handle_args(argc, argv, &stack_a);
-		// print_stacks(stack_a, stack_b);
-		// ./push_swap "1 42 8"9 89 -> erro
+		print_stacks(stack_a, stack_b);
 		ft_lstclear(&stack_a);
 	}
 	else

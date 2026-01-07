@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 16:39:19 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/07 17:19:38 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/07 18:21:13 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ int	main(int argc, char **argv)
 	{
 		ft_handle_args(argc, argv, &stack_a);
 		// print_stacks(stack_a, stack_b);
+		// ./push_swap "1 42 8"9 89 -> erro
 		ft_lstclear(&stack_a);
 	}
 	else

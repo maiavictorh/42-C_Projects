@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/30 16:31:50 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/07 17:17:07 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/08 15:00:10 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_free_split(char **split)
 void	ft_free_on_error(t_stack **stack, char **split)
 {
 	if (stack)
-		ft_lstclear(stack);
+		ft_stackclear(stack);
 	if (split)
 		ft_free_split(split);
 	ft_error();

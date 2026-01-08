@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 17:06:13 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/07 17:18:21 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/08 14:57:19 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_stack	*ft_new_node(int data)
 	return (node);
 }
 
-void	ft_lstadd_back(t_stack **stack, t_stack *new_node)
+void	ft_stackadd_back(t_stack **stack, t_stack *new_node)
 {
 	t_stack	*last;
 
@@ -39,7 +39,20 @@ void	ft_lstadd_back(t_stack **stack, t_stack *new_node)
 	last->next = new_node;
 }
 
-void	ft_lstclear(t_stack **stack)
+int	ft_stacksize(t_stack *stack)
+{
+	size_t	count;
+
+	count = 0;
+	while (stack)
+	{
+		count++;
+		stack = stack->next;
+	}
+	return (count);
+}
+
+void	ft_stackclear(t_stack **stack)
 {
 	t_stack	*next;
 

@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 22:39:10 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/06 23:20:33 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/08 17:21:34 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,28 @@ void	ft_reverse_rotate(t_stack **stack)
 
 void	ft_rra(t_stack **stack_a)
 {
-	ft_reverse_rotate(stack_a);
-	write (1, "rra\n", 4);
+	if (ft_stacksize(*stack_a) > 1)
+	{
+		ft_reverse_rotate(stack_a);
+		write (1, "rra\n", 4);
+	}
 }
 
 void	ft_rrb(t_stack **stack_b)
 {
-	ft_reverse_rotate(stack_b);
-	write (1, "rrb\n", 4);
+	if (ft_stacksize(*stack_b) > 1)
+	{
+		ft_reverse_rotate(stack_b);
+		write (1, "rrb\n", 4);
+	}
 }
 
 void	ft_rrr(t_stack **stack_a, t_stack **stack_b)
 {
-	ft_reverse_rotate(stack_a);
-	ft_reverse_rotate(stack_b);
-	write (1, "rrr\n", 4);
+	if (ft_stacksize(*stack_a) > 1)
+	{
+		ft_reverse_rotate(stack_a);
+		ft_reverse_rotate(stack_b);
+		write (1, "rrr\n", 4);
+	}
 }

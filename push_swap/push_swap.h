@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 16:38:51 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/07 17:14:27 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/08 15:03:32 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ void	ft_free_on_error(t_stack **stack, char **split);
 
 t_stack	*ft_new_node(int data);
 t_stack	*ft_last_node(t_stack *node);
-void	ft_lstclear(t_stack **stack);
+int		ft_stacksize(t_stack *stack);
+void	ft_stackclear(t_stack **stack);
 void	ft_verif_double(t_stack *stack);
-void	ft_lstadd_back(t_stack **stack, t_stack *new_node);
-void	ft_lstadd_front(t_stack **stack, t_stack *new_node);
+void	ft_stackadd_back(t_stack **stack, t_stack *new_node);
 
 /* ======== Push_swap operations ======== */
 

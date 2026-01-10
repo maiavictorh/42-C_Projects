@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 14:22:56 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/08 17:22:03 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/10 20:20:31 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,10 @@ void	ft_push(t_stack **stack_dst, t_stack **stack_src)
 {
 	t_stack	*first;
 
-	if (stack_src && *stack_src)
-	{
-		first = *stack_src;
-		*stack_src = (*stack_src)->next;
-		first->next = *stack_dst;
-		*stack_dst = first;
-	}
+	first = *stack_src;
+	*stack_src = (*stack_src)->next;
+	first->next = *stack_dst;
+	*stack_dst = first;
 }
 
 void	ft_pa(t_stack **stack_a, t_stack **stack_b)

@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 13:58:45 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/08 16:39:00 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/10 20:16:59 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,12 @@ void	ft_swap(t_stack **stack)
 	t_stack	*first;
 	t_stack	*third;
 
-	if (stack && *stack && (*stack)->next)
-	{
-		third = (*stack)->next;
-		third = third->next;
-		first = *stack;
-		*stack = (*stack)->next;
-		first->next = third;
-		(*stack)->next = first;
-	}
+	third = (*stack)->next;
+	third = third->next;
+	first = *stack;
+	*stack = (*stack)->next;
+	first->next = third;
+	(*stack)->next = first;
 }
 
 void	ft_sa(t_stack **stack_a)

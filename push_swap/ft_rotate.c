@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 17:27:40 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/08 16:57:25 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/10 20:07:32 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,13 @@ void	ft_rotate(t_stack **stack)
 	t_stack	*first;
 	t_stack	*last;
 
-	if (stack && *stack && (*stack)->next)
-	{
-		first = *stack;
-		*stack = first->next;
-		last = first;
-		while (last->next)
-			last = last->next;
-		last->next = first;
-		first->next = NULL;
-	}
+	first = *stack;
+	*stack = first->next;
+	last = first;
+	while (last->next)
+		last = last->next;
+	last->next = first;
+	first->next = NULL;
 }
 
 void	ft_ra(t_stack **stack_a)

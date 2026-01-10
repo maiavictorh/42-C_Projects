@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 17:06:13 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/08 14:57:19 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/10 20:13:14 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int	ft_stacksize(t_stack *stack)
 	size_t	count;
 
 	count = 0;
+	if (!stack)
+		return (count);
 	while (stack)
 	{
 		count++;

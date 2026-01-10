@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 16:38:51 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/08 15:03:32 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/10 20:14:13 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@ typedef struct s_stack
 	int				data;
 	struct s_stack	*next;
 }	t_stack;
+
+/* ============= Sorting ============= */
+
+void	ft_sort_stack(t_stack **stack_a, t_stack **stack_b);
+void	ft_sort_3(t_stack **stack_a, t_stack **stack_b);
+void	ft_sort_4(t_stack **stack_a, t_stack **stack_b);
+void	ft_sort_5(t_stack **stack_a, t_stack **stack_b);
 
 /* ======== Utils ======== */
 

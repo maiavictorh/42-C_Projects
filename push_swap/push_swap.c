@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 16:39:19 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/08 17:24:01 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/10 17:09:22 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,23 +83,8 @@ int	main(int argc, char **argv)
 
 		ft_handle_args(argc, argv, &stack_a);
 		print_stack(stack_a, 'A');
-/*
-		ft_pb(&stack_a, &stack_b);
+		ft_sort_stack(&stack_a, &stack_b);
 		print_stack(stack_a, 'A');
-		print_stack(stack_b, 'B');
-
-		ft_ss(&stack_a, &stack_b);
-		print_stack(stack_a, 'A');
-		print_stack(stack_b, 'B');
-
-		ft_rr(&stack_a, &stack_b);
-		print_stack(stack_a, 'A');
-		print_stack(stack_b, 'B');
-
-		ft_rrr(&stack_a, &stack_b);
-		print_stack(stack_a, 'A');
-		print_stack(stack_b, 'B');
-*/
 		ft_stackclear(&stack_a);
 		ft_stackclear(&stack_b);
 	}

@@ -6,11 +6,29 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 17:49:21 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/10 20:15:26 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/12 17:49:53 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	ft_is_sorted(t_stack *stack)
+{
+	t_stack	*cursor;
+	t_stack	*next;
+
+	if (ft_stacksize(stack) == 1)
+		return (1);
+	cursor = stack;
+	while (cursor->next)
+	{
+		next = cursor->next;
+		if (cursor->data > next->data)
+			return (0);
+		cursor = cursor->next;
+	}
+	return (1);
+}
 
 void	ft_sort_3(t_stack **stack_a, t_stack **stack_b);
 
@@ -23,6 +41,8 @@ void	ft_sort_stack(t_stack **stack_a, t_stack **stack_b)
 	t_stack	*temp;
 	int		size;
 
+	if (ft_is_sorted(*stack_a))
+		return ;
 	temp = *stack_a;
 	size = ft_stacksize(*stack_a);
 	if (size == 2)

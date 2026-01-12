@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 16:39:19 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/10 17:09:22 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/12 16:49:52 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_single_arg(char *arg, t_stack **stack, int num_count, int value)
 	ft_free_split(args);
 }
 
-void	ft_handle_args(int argc, char **argv, t_stack **stack)
+void	ft_args_to_stack(int argc, char **argv, t_stack **stack)
 {
 	int		i;
 	int		value;
@@ -77,16 +77,11 @@ int	main(int argc, char **argv)
 	stack_b = NULL;
 	if (argc > 1)
 	{
-		for (int i = 0; i < argc; i++)
-			printf("\"%s\" ", argv[i]);
-		printf("\n\n");
-
-		ft_handle_args(argc, argv, &stack_a);
+		ft_args_to_stack(argc, argv, &stack_a);
 		print_stack(stack_a, 'A');
 		ft_sort_stack(&stack_a, &stack_b);
 		print_stack(stack_a, 'A');
 		ft_stackclear(&stack_a);
-		ft_stackclear(&stack_b);
 	}
 	else
 		return (-1);

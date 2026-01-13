@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 17:49:21 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/12 21:26:33 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/13 17:31:39 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,48 @@ void	ft_sort_3(t_stack **stack_a)
 		ft_sa(stack_a);
 }
 
-void	ft_sort_4(t_stack **stack_a, t_stack **stack_b);
+void	ft_sort_4(t_stack **stack_a, t_stack **stack_b)
+{
+	int	index_smallest;
 
-void	ft_sort_5(t_stack **stack_a, t_stack **stack_b);
+	index_smallest = ft_find_smallest(*stack_a);
+	if (index_smallest == 1)
+		ft_sa(stack_a);
+	else if (index_smallest == 2)
+	{
+		ft_ra(stack_a);
+		ft_ra(stack_a);
+	}
+	else if (index_smallest == 3)
+		ft_rra(stack_a);
+	ft_pb(stack_b, stack_a);
+	ft_sort_3(stack_a);
+	ft_pa(stack_a, stack_b);
+}
+
+void	ft_sort_5(t_stack **stack_a, t_stack **stack_b)
+{
+	int	index_smallest;
+
+	index_smallest = ft_find_smallest(*stack_a);
+	if (index_smallest == 1)
+		ft_sa(stack_a);
+	else if (index_smallest == 2)
+	{
+		ft_ra(stack_a);
+		ft_ra(stack_a);
+	}
+	else if (index_smallest == 3)
+	{
+		ft_rra(stack_a);
+		ft_rra(stack_a);
+	}
+	else if (index_smallest == 4)
+		ft_rra(stack_a);
+	ft_pb(stack_b, stack_a);
+	ft_sort_4(stack_a, stack_b);
+	ft_pa(stack_a, stack_b);
+}
 
 void	ft_sort_stack(t_stack **stack_a, t_stack **stack_b)
 {
@@ -66,8 +105,8 @@ void	ft_sort_stack(t_stack **stack_a, t_stack **stack_b)
 	}
 	else if (size == 3)
 		ft_sort_3(stack_a);
-	// else if (size == 4)
-	// 	ft_sort_4(stack_a, stack_b);
-	// else if (size == 5)
-	// 	ft_sort_5(stack_a, stack_b);
+	else if (size == 4)
+		ft_sort_4(stack_a, stack_b);
+	else if (size == 5)
+		ft_sort_5(stack_a, stack_b);
 }

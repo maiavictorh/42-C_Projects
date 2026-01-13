@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 14:22:56 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/10 20:20:31 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/13 16:39:31 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_pa(t_stack **stack_a, t_stack **stack_b)
 	}
 }
 
-void	ft_pb(t_stack **stack_a, t_stack **stack_b)
+void	ft_pb(t_stack **stack_b, t_stack **stack_a)
 {
 	if (ft_stacksize(*stack_a) > 0)
 	{

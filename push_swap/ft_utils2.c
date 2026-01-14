@@ -6,13 +6,13 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 15:37:04 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/13 16:07:27 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/14 14:17:20 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_find_smallest(t_stack *stack)
+int	find_smallest(t_stack *stack)
 {
 	t_stack	*temp;
 	int		i;

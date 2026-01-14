@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 17:06:13 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/10 20:13:14 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/14 14:29:43 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	ft_stackclear(t_stack **stack)
 	}
 }
 
-void	ft_verif_double(t_stack *stack)
+void	verif_double(t_stack *stack)
 {
 	t_stack	*cursor;
 	t_stack	*temp;
@@ -80,7 +80,7 @@ void	ft_verif_double(t_stack *stack)
 		while (temp)
 		{
 			if (cursor->data == temp->data)
-				ft_free_on_error(&stack, NULL);
+				free_on_error(&stack, NULL);
 			temp = temp->next;
 		}
 		cursor = cursor->next;

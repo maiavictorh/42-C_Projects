@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 16:39:19 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/12 16:49:52 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/14 14:28:24 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	print_stack(t_stack *stack, char c)
 }
 /* ================================= */
 
-void	ft_single_arg(char *arg, t_stack **stack, int num_count, int value)
+void	single_arg(char *arg, t_stack **stack, int num_count, int value)
 {
 	int		i;
 	char	**args;
@@ -32,18 +32,18 @@ void	ft_single_arg(char *arg, t_stack **stack, int num_count, int value)
 	i = 0;
 	args = ft_split(arg, ' ');
 	if (!args)
-		ft_free_on_error(stack, NULL);
+		free_on_error(stack, NULL);
 	while (i < num_count)
 	{
 		if (!ft_atoi(args[i], &value))
-			ft_free_on_error(stack, args);
+			free_on_error(stack, args);
 		ft_stackadd_back(stack, ft_new_node(value));
 		i++;
 	}
 	ft_free_split(args);
 }
 
-void	ft_args_to_stack(int argc, char **argv, t_stack **stack)
+void	args_to_stack(int argc, char **argv, t_stack **stack)
 {
 	int		i;
 	int		value;
@@ -52,20 +52,20 @@ void	ft_args_to_stack(int argc, char **argv, t_stack **stack)
 	i = 1;
 	while (i < argc)
 	{
-		num_count = ft_count_numbers(argv[i]);
+		num_count = count_numbers(argv[i]);
 		if (num_count == 1)
 		{
 			if (!ft_atoi(argv[i], &value))
-				ft_free_on_error(stack, NULL);
+				free_on_error(stack, NULL);
 			ft_stackadd_back(stack, ft_new_node(value));
 		}
 		else if (num_count > 1)
-			ft_single_arg(argv[i], stack, num_count, value);
+			single_arg(argv[i], stack, num_count, value);
 		else
-			ft_free_on_error(stack, NULL);
+			free_on_error(stack, NULL);
 		i++;
 	}
-	ft_verif_double(*stack);
+	verif_double(*stack);
 }
 
 int	main(int argc, char **argv)
@@ -77,9 +77,9 @@ int	main(int argc, char **argv)
 	stack_b = NULL;
 	if (argc > 1)
 	{
-		ft_args_to_stack(argc, argv, &stack_a);
+		args_to_stack(argc, argv, &stack_a);
 		print_stack(stack_a, 'A');
-		ft_sort_stack(&stack_a, &stack_b);
+		sort_stack(&stack_a, &stack_b);
 		print_stack(stack_a, 'A');
 		ft_stackclear(&stack_a);
 	}

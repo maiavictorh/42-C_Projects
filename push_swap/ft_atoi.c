@@ -6,13 +6,13 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 02:01:22 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/13 18:56:56 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/14 14:28:40 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_count_numbers(char *s)
+int	count_numbers(char *s)
 {
 	int	i;
 	int	count;
@@ -38,7 +38,7 @@ int	ft_count_numbers(char *s)
 	return (count);
 }
 
-static int	ft_verif_overflow(char digit, int num, int sign)
+static int	verif_overflow(char digit, int num, int sign)
 {
 	t_ll	n;
 
@@ -68,7 +68,7 @@ int	ft_atoi(char *nptr, int *result)
 		return (0);
 	while (ft_isdigit(*nptr))
 	{
-		if (ft_verif_overflow(*nptr, num, sign))
+		if (verif_overflow(*nptr, num, sign))
 			return (0);
 		num = num * 10 + (*nptr - '0');
 		nptr++;

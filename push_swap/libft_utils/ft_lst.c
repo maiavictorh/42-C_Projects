@@ -6,11 +6,11 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 17:06:13 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/14 14:29:43 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/14 18:07:09 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 t_stack	*ft_new_node(int data)
 {

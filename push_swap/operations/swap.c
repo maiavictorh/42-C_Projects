@@ -1,55 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rotate.c                                        :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/06 17:27:40 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/14 14:22:50 by victode-         ###   ########.fr       */
+/*   Created: 2026/01/06 13:58:45 by victode-          #+#    #+#             */
+/*   Updated: 2026/01/14 18:08:07 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-void	rotate(t_stack **stack)
+void	swap(t_stack **stack)
 {
 	t_stack	*first;
-	t_stack	*last;
+	t_stack	*third;
 
+	third = (*stack)->next;
+	third = third->next;
 	first = *stack;
-	*stack = first->next;
-	last = first;
-	while (last->next)
-		last = last->next;
-	last->next = first;
-	first->next = NULL;
+	*stack = (*stack)->next;
+	first->next = third;
+	(*stack)->next = first;
 }
 
-void	ra(t_stack **stack_a)
+void	sa(t_stack **stack_a)
 {
 	if (ft_stacksize(*stack_a) > 1)
 	{
-		rotate(stack_a);
-		write (1, "ra\n", 3);
+		swap(stack_a);
+		write (1, "sa\n", 3);
 	}
 }
 
-void	rb(t_stack **stack_b)
+void	sb(t_stack **stack_b)
 {
 	if (ft_stacksize(*stack_b) > 1)
 	{
-		rotate(stack_b);
-		write (1, "rb\n", 3);
+		swap(stack_b);
+		write (1, "sb\n", 3);
 	}
 }
 
-void	rr(t_stack **stack_a, t_stack **stack_b)
+void	ss(t_stack **stack_a, t_stack **stack_b)
 {
 	if (ft_stacksize(*stack_a) > 1 && ft_stacksize(*stack_b) > 1)
 	{
-		rotate(stack_a);
-		rotate(stack_b);
-		write (1, "rr\n", 3);
+		sa(stack_a);
+		sb(stack_b);
+		write (1, "ss\n", 3);
 	}
 }

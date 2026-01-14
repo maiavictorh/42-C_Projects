@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 16:39:19 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/14 14:28:24 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/14 18:13:03 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	main(int argc, char **argv)
 		args_to_stack(argc, argv, &stack_a);
 		print_stack(stack_a, 'A');
 		sort_stack(&stack_a, &stack_b);
-		print_stack(stack_a, 'A');
+		// print_stack(stack_a, 'A');
 		ft_stackclear(&stack_a);
 	}
 	else

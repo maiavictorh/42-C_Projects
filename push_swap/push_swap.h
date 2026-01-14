@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 16:38:51 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/14 14:29:08 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/14 17:04:39 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef unsigned long long	t_ull;
 typedef struct s_stack
 {
 	int				data;
+	int				index;
 	struct s_stack	*next;
 }	t_stack;
 

@@ -6,11 +6,11 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 19:18:13 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/06 00:43:22 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/14 18:07:12 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 static int	ft_word_len(char *s, char c)
 {

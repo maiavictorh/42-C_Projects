@@ -6,37 +6,11 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 02:01:22 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/14 18:07:04 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/15 17:58:49 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
-int	count_numbers(char *s)
-{
-	int	i;
-	int	count;
-
-	i = 0;
-	count = 0;
-	while (s[i])
-	{
-		while (s[i] && ft_isspace(s[i]))
-			i++;
-		if (s[i] == '+' || s[i] == '-')
-		{
-			if (!ft_isdigit(s[++i]))
-				return (0);
-		}
-		if (s[i] && ft_isdigit(s[i]))
-			count++;
-		while (s[i] && ft_isdigit(s[i]))
-			i++;
-		if (s[i] && !ft_isspace(s[i]))
-			return (0);
-	}
-	return (count);
-}
 
 static int	verif_overflow(char digit, int num, int sign)
 {
@@ -77,16 +51,3 @@ int	ft_atoi(char *nptr, int *result)
 		return (0);
 	return (*result = sign * num, 1);
 }
-/*
-int main(void)
-{
-	char *s = "  -123";
-	int result;
-	
-	printf("%d\n", ft_count_numbers(s));
-	if (ft_atoi(s, &result) == 1)
-    	printf("Número: %d\n", result);  // -123
-	else
-    	printf("Erro na conversão\n");
-}
-*/

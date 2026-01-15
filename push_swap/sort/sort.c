@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 17:49:21 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/14 18:05:26 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/15 14:50:22 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,4 +120,6 @@ void	sort_stack(t_stack **stack_a, t_stack **stack_b)
 		sort_4(stack_a, stack_b);
 	else if (size == 5)
 		sort_5(stack_a, stack_b);
+	else if (size > 5)
+		radix(stack_a, stack_b);
 }

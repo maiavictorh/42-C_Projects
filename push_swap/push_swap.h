@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 16:38:51 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/14 17:04:39 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/15 18:30:50 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,15 @@ void	sort_4(t_stack **stack_a, t_stack **stack_b);
 void	sort_5(t_stack **stack_a, t_stack **stack_b);
 void	sort_stack(t_stack **stack_a, t_stack **stack_b);
 
+/* ========== Radix ========== */
+
+int		*stack_to_array(t_stack *stack_a);
+void	sort_int_arr(int *arr, int size);
+void	init_index(t_stack *stack_a);
+void	radix(t_stack **stack_a, t_stack **stack_b);
+
 /* ======== Utils ======== */
 
-void	ft_error(void);
 int		ft_isdigit(int c);
 int		ft_isspace(int c);
 int		ft_atoi(char *nptr, int *result);
@@ -77,5 +83,6 @@ void	pb(t_stack **stack_b, t_stack **stack_a);
 /* ======== Extra ======== */
 
 void	print_stack(t_stack *stack, char c);
+void	print_index(t_stack *stack, char c);
 
 #endif

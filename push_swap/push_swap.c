@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 16:39:19 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/14 18:13:03 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/15 17:34:40 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,16 @@ void	print_stack(t_stack *stack, char c)
 	while (stack)
 	{
 		printf(" %d\n", stack->data);
+		stack = stack->next;
+	}
+	printf("===\n %c\n_________________________________\n\n", c);
+}
+
+void	print_index(t_stack *stack, char c)
+{
+	while (stack)
+	{
+		printf(" %d\n", stack->index);
 		stack = stack->next;
 	}
 	printf("===\n %c\n_________________________________\n\n", c);
@@ -80,7 +90,7 @@ int	main(int argc, char **argv)
 		args_to_stack(argc, argv, &stack_a);
 		print_stack(stack_a, 'A');
 		sort_stack(&stack_a, &stack_b);
-		// print_stack(stack_a, 'A');
+		print_index(stack_a, 'A');
 		ft_stackclear(&stack_a);
 	}
 	else

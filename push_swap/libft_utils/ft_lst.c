@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 17:06:13 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/14 18:07:09 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/15 18:58:19 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_stack	*ft_new_node(int data)
 	if (!node)
 		return (NULL);
 	node->data = data;
+	node->index = 0;
 	node->next = NULL;
 	return (node);
 }

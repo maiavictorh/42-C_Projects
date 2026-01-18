@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 15:37:04 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/15 18:03:56 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/18 16:27:21 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,27 @@ void	sort_int_arr(int *arr, int size)
 		}
 		i++;
 	}
+}
+
+int	get_max_bits(t_stack *stack)
+{
+	t_stack	*temp;
+	int		bit;
+	int		max;
+
+	temp = stack;
+	bit = 0;
+	max = temp->index;
+	while (temp)
+	{
+		if (temp->index > max)
+			max = temp->index;
+		temp = temp->next;
+	}
+	while (max > 0)
+	{
+		bit++;
+		max /= 2;
+	}
+	return (bit);
 }

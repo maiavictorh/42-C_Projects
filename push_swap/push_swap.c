@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 16:39:19 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/15 18:58:34 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/18 18:20:17 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,7 @@ int	main(int argc, char **argv)
 	if (argc > 1)
 	{
 		args_to_stack(argc, argv, &stack_a);
-		print_stack(stack_a, 'A');
 		sort_stack(&stack_a, &stack_b);
-		print_index(stack_a, 'A');
 		ft_stackclear(&stack_a);
 	}
 	else

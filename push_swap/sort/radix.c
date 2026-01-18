@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 17:05:38 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/15 18:33:32 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/18 18:29:59 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,28 @@ void	init_index(t_stack *stack_a)
 
 void	radix(t_stack **stack_a, t_stack **stack_b)
 {
-	t_stack	*temp_a;
-	t_stack	*temp_b;
+	int	i;
+	int	bit;
+	int	size;
+	int	max_bits;
 
-	temp_a = *stack_a;
-	temp_b = *stack_b;
 	init_index(*stack_a);
+	bit = 0;
+	size = ft_stacksize(*stack_a);
+	max_bits = get_max_bits(*stack_a);
+	while (bit < max_bits)
+	{
+		i = 0;
+		while (i < size)
+		{
+			if (((*stack_a)->index >> bit & 1) == 0)
+				pb(stack_b, stack_a);
+			else
+				ra(stack_a);
+			i++;
+		}
+		bit++;
+		while (ft_stacksize(*stack_b))
+			pa(stack_a, stack_b);
+	}
 }

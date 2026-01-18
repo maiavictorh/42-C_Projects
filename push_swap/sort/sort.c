@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 17:49:21 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/15 14:50:22 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/18 17:34:09 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,17 +59,17 @@ void	sort_3(t_stack **stack_a)
 
 void	sort_4(t_stack **stack_a, t_stack **stack_b)
 {
-	int	index_smallest;
+	int	smallest;
 
-	index_smallest = find_smallest(*stack_a);
-	if (index_smallest == 1)
+	smallest = find_smallest(*stack_a);
+	if (smallest == 1)
 		sa(stack_a);
-	else if (index_smallest == 2)
+	else if (smallest == 2)
 	{
 		ra(stack_a);
 		ra(stack_a);
 	}
-	else if (index_smallest == 3)
+	else if (smallest == 3)
 		rra(stack_a);
 	pb(stack_b, stack_a);
 	sort_3(stack_a);
@@ -78,22 +78,22 @@ void	sort_4(t_stack **stack_a, t_stack **stack_b)
 
 void	sort_5(t_stack **stack_a, t_stack **stack_b)
 {
-	int	index_smallest;
+	int	smallest;
 
-	index_smallest = find_smallest(*stack_a);
-	if (index_smallest == 1)
+	smallest = find_smallest(*stack_a);
+	if (smallest == 1)
 		sa(stack_a);
-	else if (index_smallest == 2)
+	else if (smallest == 2)
 	{
 		ra(stack_a);
 		ra(stack_a);
 	}
-	else if (index_smallest == 3)
+	else if (smallest == 3)
 	{
 		rra(stack_a);
 		rra(stack_a);
 	}
-	else if (index_smallest == 4)
+	else if (smallest == 4)
 		rra(stack_a);
 	pb(stack_b, stack_a);
 	sort_4(stack_a, stack_b);

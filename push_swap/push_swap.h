@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 16:38:51 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/15 18:30:50 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/18 17:28:06 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	sort_stack(t_stack **stack_a, t_stack **stack_b);
 int		*stack_to_array(t_stack *stack_a);
 void	sort_int_arr(int *arr, int size);
 void	init_index(t_stack *stack_a);
+int		get_max_bits(t_stack *stack);
 void	radix(t_stack **stack_a, t_stack **stack_b);
 
 /* ======== Utils ======== */

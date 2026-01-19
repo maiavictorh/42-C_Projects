@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 13:58:45 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/14 18:08:07 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/19 16:44:42 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@ void	swap(t_stack **stack)
 	t_stack	*first;
 	t_stack	*third;
 
-	third = (*stack)->next;
-	third = third->next;
 	first = *stack;
 	*stack = (*stack)->next;
+	third = (*stack)->next;
 	first->next = third;
 	(*stack)->next = first;
 }

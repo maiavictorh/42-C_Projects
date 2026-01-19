@@ -6,33 +6,11 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 16:39:19 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/18 18:20:17 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/19 17:47:49 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-/* This function is for test purpose */
-void	print_stack(t_stack *stack, char c)
-{
-	while (stack)
-	{
-		printf(" %d\n", stack->data);
-		stack = stack->next;
-	}
-	printf("===\n %c\n_________________________________\n\n", c);
-}
-
-void	print_index(t_stack *stack, char c)
-{
-	while (stack)
-	{
-		printf(" %d\n", stack->index);
-		stack = stack->next;
-	}
-	printf("===\n %c\n_________________________________\n\n", c);
-}
-/* ================================= */
 
 void	single_arg(char *arg, t_stack **stack, int num_count, int value)
 {

@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 16:38:51 by victode-          #+#    #+#             */
-/*   Updated: 2026/01/18 17:28:06 by victode-         ###   ########.fr       */
+/*   Updated: 2026/01/20 15:48:56 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,5 @@ void	rrb(t_stack **stack_b);
 void	rrr(t_stack **stack_a, t_stack **stack_b);
 void	pa(t_stack **stack_a, t_stack **stack_b);
 void	pb(t_stack **stack_b, t_stack **stack_a);
-
-/* ======== Extra ======== */
-
-void	print_stack(t_stack *stack, char c);
-void	print_index(t_stack *stack, char c);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/09/16 15:47:34 by victode-          #+#    #+#              #
-#    Updated: 2026/09/17 19:26:32 by victode-         ###   ########.fr        #
+#    Updated: 2026/09/21 13:15:37 by victode-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 NAME= codexion
 
 # Source files and objects
-SRCS= codexion.c src/utils.c
+SRCS= codexion.c src/parser.c
 
 OBJS= $(SRCS:.c=.o)
 
@@ -34,6 +34,9 @@ $(NAME): $(OBJS)
 # Compile files into objects
 %.o: %.c
 	$(CC_FLAGS) -c $< -o $@
+
+lint:
+	norminette $(SRCS) codexion.h
 
 # Rule: clean = remove temporary files (objects)
 clean:

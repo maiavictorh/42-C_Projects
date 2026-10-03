@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/16 15:41:12 by victode-          #+#    #+#             */
-/*   Updated: 2026/09/20 01:25:54 by victode-         ###   ########.fr       */
+/*   Updated: 2026/09/22 14:45:02 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 int	main(int ac, char **av)
 {
-	if (!parse_args(ac, av))
+	if (!validate_args(ac, av))
 		exit(EXIT_FAILURE);
 }

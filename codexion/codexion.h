@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/16 15:49:16 by victode-          #+#    #+#             */
-/*   Updated: 2026/09/21 15:13:50 by victode-         ###   ########.fr       */
+/*   Updated: 2026/09/22 14:48:51 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,34 @@
 # define CODEXION_H
 
 # include <stdio.h>
-# include <limits.h>
+# include <limits.h> 
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
 # include <pthread.h>
 
+# define FIFO 1
+# define EDF 0
+
+typedef long long		t_ll;
+typedef struct s_coder	t_coder;
+typedef struct s_dongle	t_dongle;
+
 /* =============== Data =============== */
 
 typedef struct s_codexion
 {
+	int			num_coders;
+	long		time_to_burnout;
+	long		time_to_compile;
+	long		time_to_debug;
+	long		time_to_refactor;
+	int			compiles_required;
+	long		dongle_cooldown;
+	int			scheduler;
+
+	t_coder		*coders;
+	t_dongle	*dongles;
 }	t_codexion;
 
 typedef struct s_coder
@@ -36,8 +54,12 @@ typedef struct s_coder
 	t_codexion	*data;
 }	t_coder;
 
+typedef struct s_dongle
+{
+}	t_dongle;
+
 /* =============== Parser =============== */
 int	validate_number(const char *s, int *result);
-int	parse_args(int ac, char **av);
+int	validate_args(int ac, char **av);
 
 #endif

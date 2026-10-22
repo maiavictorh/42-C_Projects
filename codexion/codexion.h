@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/16 15:49:16 by victode-          #+#    #+#             */
-/*   Updated: 2026/09/22 14:48:51 by victode-         ###   ########.fr       */
+/*   Updated: 2026/10/22 01:54:19 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef struct s_dongle
 }	t_dongle;
 
 /* =============== Parser =============== */
-int	validate_number(const char *s, int *result);
+
 int	validate_args(int ac, char **av);
 
 #endif

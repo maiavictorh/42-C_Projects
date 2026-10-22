@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/16 15:49:16 by victode-          #+#    #+#             */
-/*   Updated: 2026/10/22 01:54:19 by victode-         ###   ########.fr       */
+/*   Updated: 2026/10/22 18:15:55 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_dongle	t_dongle;
 
 /* =============== Data =============== */
 
-typedef struct s_codexion
+typedef struct s_manager
 {
 	int			num_coders;
 	long		time_to_burnout;
@@ -42,24 +42,31 @@ typedef struct s_codexion
 
 	t_coder		*coders;
 	t_dongle	*dongles;
-}	t_codexion;
+
+}	t_manager;
 
 typedef struct s_coder
 {
 	int			id;
-	pthread_t	thread;
 	int			compiles_done;
 	long		last_compile_start;
 	long		last_dongle_release;
-	t_codexion	*data;
+
+	pthread_t	thread;
+	t_dongle	*right_dongle;
+	t_dongle	*left_dongle;
+	t_manager	*data;
 }	t_coder;
 
 typedef struct s_dongle
 {
+	int		id;
+	long	cooldown;
 }	t_dongle;
 
 /* =============== Parser =============== */
 
-int	validate_args(int ac, char **av);
+int		validate_args(int ac, char **av, int *result);
+void	init_manager(int *data);
 
 #endif

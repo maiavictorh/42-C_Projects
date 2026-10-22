@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 02:01:22 by victode-          #+#    #+#             */
-/*   Updated: 2026/10/22 02:35:02 by victode-         ###   ########.fr       */
+/*   Updated: 2026/10/22 18:20:06 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,10 @@ static int	set_scheduler(char *arg, int *scheduler)
 	return (1);
 }
 
-int	validate_args(int ac, char **av)
+int	validate_args(int ac, char **av, int *data)
 {
 	int	i;
 	int	j;
-	int	res[7];
-	int	scheduler;
 
 	if (ac != 9)
 		return (write(2, "ERROR: wrong number of arguments!\n", 35), 0);
@@ -58,18 +56,10 @@ int	validate_args(int ac, char **av)
 	j = 0;
 	while (i < 8)
 	{
-		if (i < 8)
-		{
-			if (!validate_number(av[i++], &res[j++]))
-				return (write(2, "ERROR: Invalid argument!\n", 26), 0);
-		}
+		if (!validate_number(av[i++], &data[j++]))
+			return (write(2, "ERROR: Invalid argument!\n", 26), 0);
 	}
-	if (!set_scheduler(av[8], &scheduler))
+	if (!set_scheduler(av[i], &data[j]))
 		return (0);
-	/* ========= TEST ========= */
-	for (int i = 0; res[i]; i++)
-		printf("%d ", res[i]);
-	printf("%d\n", scheduler);
-	/* ======================== */
 	return (1);
 }

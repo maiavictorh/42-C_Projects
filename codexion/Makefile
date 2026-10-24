@@ -6,7 +6,7 @@
 #    By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/09/16 15:47:34 by victode-          #+#    #+#              #
-#    Updated: 2026/10/22 17:35:10 by victode-         ###   ########.fr        #
+#    Updated: 2026/10/23 14:39:36 by victode-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 NAME= codexion
 
 # Source files and objects
-SRCS= codexion.c src/parser.c src/init.c
+SRCS= codexion.c src/parser.c src/init.c src/utils.c
 
 OBJS= $(SRCS:.c=.o)
 
@@ -37,10 +37,11 @@ test1: all clean
 
 test2: all clean
 	clear
-	./$(NAME) 2 600 100 100 100 4 100 "edf"
+	./$(NAME) 5 600 100 100 100 4 100 "edf"
 
 # Compile files into objects
 %.o: %.c
+	clear
 	$(CC_FLAGS) -c $< -o $@
 
 lint:

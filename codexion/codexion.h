@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/16 15:49:16 by victode-          #+#    #+#             */
-/*   Updated: 2026/10/22 18:15:55 by victode-         ###   ########.fr       */
+/*   Updated: 2026/10/23 14:19:56 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ typedef struct s_coder
 	long		last_dongle_release;
 
 	pthread_t	thread;
-	t_dongle	*right_dongle;
 	t_dongle	*left_dongle;
+	t_dongle	*right_dongle;
 	t_manager	*data;
 }	t_coder;
 
@@ -66,7 +66,11 @@ typedef struct s_dongle
 
 /* =============== Parser =============== */
 
-int		validate_args(int ac, char **av, int *result);
-void	init_manager(int *data);
+int			validate_args(int ac, char **av, int *result);
+t_manager	*init_manager(int *data);
+
+/* =============== Utils =============== */
+
+void		clear_manager(t_manager *manager);
 
 #endif

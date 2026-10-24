@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/16 15:41:12 by victode-          #+#    #+#             */
-/*   Updated: 2026/10/22 18:16:45 by victode-         ###   ########.fr       */
+/*   Updated: 2026/10/24 13:18:30 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 int	main(int ac, char **av)
 {
-	int	data[9];
+	int			data[9];
+	t_manager	*manager;
 
 	if (!validate_args(ac, av, data))
 		exit(EXIT_FAILURE);
-	init_manager(data);
+	manager = init_manager(data);
+	clear_manager(manager);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/22 15:25:38 by victode-          #+#    #+#             */
-/*   Updated: 2026/10/24 13:20:53 by victode-         ###   ########.fr       */
+/*   Updated: 2026/10/27 01:09:53 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ static t_dongle	*init_dongles(t_manager *manager)
 	{
 		dongles[i].id = i + 1;
 		dongles[i].cooldown = manager->dongle_cooldown;
+		if (pthread_mutex_init(&dongles[i].mutex, NULL))
+		{
+			while (i > 0)
+				pthread_mutex_destroy(&dongles[--i].mutex);
+			return (free(dongles), NULL);
+		}
 		i++;
 	}
 	return (dongles);
@@ -53,9 +59,6 @@ static t_coder	*init_coders(t_manager *manager)
 		coders[i].data = manager;
 		i++;
 	}
-	for (int i = 0; i < manager->num_coders; i++)
-		printf("Coder%d: Dongle%d - Dongle%d\n", \
-			coders[i].id, coders[i].left_dongle->id, coders[i].right_dongle->id);
 	return (coders);
 }
 

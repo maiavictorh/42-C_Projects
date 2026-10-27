@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/16 15:49:16 by victode-          #+#    #+#             */
-/*   Updated: 2026/10/23 14:19:56 by victode-         ###   ########.fr       */
+/*   Updated: 2026/10/27 01:09:07 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,10 @@ typedef struct s_coder
 
 typedef struct s_dongle
 {
-	int		id;
-	long	cooldown;
+	int				id;
+	long			cooldown;
+
+	pthread_mutex_t	mutex;
 }	t_dongle;
 
 /* =============== Parser =============== */

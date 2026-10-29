@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/16 15:49:16 by victode-          #+#    #+#             */
-/*   Updated: 2026/10/28 18:21:47 by victode-         ###   ########.fr       */
+/*   Updated: 2026/10/29 02:19:52 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ typedef struct s_request
 {
 	long	request_time;
 	long	deadline;
-	
+
 	t_coder	*coder;
 }	t_request;
 
@@ -78,11 +78,9 @@ typedef struct s_heap
 {
 	int			size;
 	int			capacity;
-	
-	t_request	*request;
+
+	t_request	*requests;
 }	t_heap;
-
-
 
 /* =============== Parser =============== */
 

@@ -6,7 +6,7 @@
 #    By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/09/16 15:47:34 by victode-          #+#    #+#              #
-#    Updated: 2026/10/23 14:39:36 by victode-         ###   ########.fr        #
+#    Updated: 2026/10/29 02:50:01 by victode-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,13 +31,13 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(CC_FLAGS) $(OBJS) -o $(NAME)
 
-test1: all clean
+fifo: all clean
 	clear
-	./$(NAME) 1 2 3 4 5 6 7 fifo
+	valgrind ./$(NAME) 5 600 100 100 100 4 100 fifo
 
-test2: all clean
+edf: all clean
 	clear
-	./$(NAME) 5 600 100 100 100 4 100 "edf"
+	valgrind ./$(NAME) 5 600 100 100 100 4 100 "edf"
 
 # Compile files into objects
 %.o: %.c
@@ -58,4 +58,4 @@ fclean: clean
 # Rule: re = equivalent to <make fclean> and <make all>
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all fifo edf lint clean fclean re

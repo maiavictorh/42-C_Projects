@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/16 15:49:16 by victode-          #+#    #+#             */
-/*   Updated: 2026/10/29 02:19:52 by victode-         ###   ########.fr       */
+/*   Updated: 2026/10/29 20:30:18 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct s_request
 {
 	long	request_time;
 	long	deadline;
+	int		sequence;
 
 	t_coder	*coder;
 }	t_request;
@@ -90,5 +91,9 @@ t_manager	*init_manager(int *data);
 /* =============== Utils =============== */
 
 void		clear_manager(t_manager *manager);
+
+/* ============== Scheduler ============== */
+
+void		heap_insert(int scheduler, t_heap *heap, t_request *request);
 
 #endif

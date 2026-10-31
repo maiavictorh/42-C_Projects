@@ -6,7 +6,7 @@
 #    By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/09/16 15:47:34 by victode-          #+#    #+#              #
-#    Updated: 2026/10/29 19:51:49 by victode-         ###   ########.fr        #
+#    Updated: 2026/10/30 23:37:58 by victode-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 NAME= codexion
 
 # Source files and objects
-SRCS= codexion.c src/parser.c src/init.c src/utils.c src/schedule.c
+SRCS= codexion.c src/parser.c src/init.c src/utils.c src/scheduler.c
 
 OBJS= $(SRCS:.c=.o)
 
@@ -45,6 +45,7 @@ edf: all clean
 	$(CC_FLAGS) -c $< -o $@
 
 lint:
+	clear
 	norminette $(SRCS) codexion.h
 
 # Rule: clean = remove temporary files (objects)

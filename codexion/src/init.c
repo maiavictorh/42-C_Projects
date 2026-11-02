@@ -6,11 +6,11 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/22 15:25:38 by victode-          #+#    #+#             */
-/*   Updated: 2026/10/27 01:09:53 by victode-         ###   ########.fr       */
+/*   Updated: 2026/11/02 16:00:27 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../codexion.h"
+#include <codexion.h>
 
 static t_dongle	*init_dongles(t_manager *manager)
 {

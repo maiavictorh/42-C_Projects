@@ -6,7 +6,7 @@
 #    By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/09/16 15:47:34 by victode-          #+#    #+#              #
-#    Updated: 2026/10/30 23:37:58 by victode-         ###   ########.fr        #
+#    Updated: 2026/11/02 15:59:23 by victode-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRCS= codexion.c src/parser.c src/init.c src/utils.c src/scheduler.c
 OBJS= $(SRCS:.c=.o)
 
 # Compile and Flag commands
-CC_FLAGS= cc -Wall -Wextra -Werror
+CC_FLAGS= cc -Wall -Wextra -Werror -I include
 
 # Remove commands
 RM= rm -f

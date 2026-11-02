@@ -6,11 +6,11 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/28 17:11:51 by victode-          #+#    #+#             */
-/*   Updated: 2026/10/28 17:52:20 by victode-         ###   ########.fr       */
+/*   Updated: 2026/11/02 16:00:06 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../codexion.h"
+#include <codexion.h>
 
 void	manager_routine(t_manager *manager)
 {

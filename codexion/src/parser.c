@@ -6,11 +6,11 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 02:01:22 by victode-          #+#    #+#             */
-/*   Updated: 2026/10/22 18:20:06 by victode-         ###   ########.fr       */
+/*   Updated: 2026/11/02 16:00:16 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../codexion.h"
+#include <codexion.h>
 
 static int	validate_number(const char *s, int *result)
 {

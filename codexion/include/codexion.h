@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/16 15:49:16 by victode-          #+#    #+#             */
-/*   Updated: 2026/10/31 00:48:12 by victode-         ###   ########.fr       */
+/*   Updated: 2026/11/02 16:00:59 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ typedef long long		t_ll;
 typedef struct s_coder	t_coder;
 typedef struct s_dongle	t_dongle;
 
-/* =============== Data =============== */
+/* ******************************* */
+/*            Main data            */
+/* ******************************* */
 
 typedef struct s_manager
 {
@@ -56,6 +58,7 @@ typedef struct s_coder
 	t_dongle	*left_dongle;
 	t_dongle	*right_dongle;
 	t_manager	*data;
+
 }	t_coder;
 
 typedef struct s_dongle
@@ -64,7 +67,12 @@ typedef struct s_dongle
 	long			cooldown;
 
 	pthread_mutex_t	mutex;
+
 }	t_dongle;
+
+/* ********************************** */
+/*           Scheduler data           */
+/* ********************************** */
 
 typedef struct s_request
 {
@@ -73,6 +81,7 @@ typedef struct s_request
 	int		sequence;
 
 	t_coder	*coder;
+
 }	t_request;
 
 typedef struct s_heap
@@ -81,19 +90,18 @@ typedef struct s_heap
 	int			capacity;
 
 	t_request	*requests;
+
 }	t_heap;
 
 /* =============== Parser =============== */
-
 int			validate_args(int ac, char **av, int *result);
 t_manager	*init_manager(int *data);
 
 /* =============== Utils =============== */
-
 void		clear_manager(t_manager *manager);
 
 /* ============== Scheduler ============== */
-
 void		heap_insert(int scheduler, t_heap *heap, t_request *request);
+int			heap_pop(int scheduler, t_heap *heap, t_request *request);
 
 #endif

@@ -6,11 +6,11 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/28 17:56:34 by victode-          #+#    #+#             */
-/*   Updated: 2026/10/31 01:08:51 by victode-         ###   ########.fr       */
+/*   Updated: 2026/11/02 15:59:44 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../codexion.h"
+#include <codexion.h>
 
 static int	compare_time(t_request *request_1, t_request *request_2)
 {
@@ -45,7 +45,7 @@ int	compare_requests(int scheduler, t_request *request_1, t_request *request_2)
 	return (0);
 }
 
-void	swap_requests(t_request *request_1, t_request *request_2)
+static void	swap_requests(t_request *request_1, t_request *request_2)
 {
 	t_request	temp;
 

@@ -6,7 +6,7 @@
 #    By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/09/16 15:47:34 by victode-          #+#    #+#              #
-#    Updated: 2026/11/02 15:59:23 by victode-         ###   ########.fr        #
+#    Updated: 2026/11/03 17:57:16 by victode-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ edf: all clean
 
 lint:
 	clear
-	norminette $(SRCS) codexion.h
+	norminette $(SRCS) include/codexion.h
 
 # Rule: clean = remove temporary files (objects)
 clean:

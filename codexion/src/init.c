@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/22 15:25:38 by victode-          #+#    #+#             */
-/*   Updated: 2026/11/04 17:44:57 by victode-         ###   ########.fr       */
+/*   Updated: 2026/11/05 19:24:11 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static int	init_dongles(t_manager *manager)
 	{
 		manager->dongles[i].id = i + 1;
 		manager->dongles[i].cooldown = manager->dongle_cooldown;
+		manager->dongles[i].in_use = 0;
+		manager->dongles[i].available_at = 0;
 		if (pthread_mutex_init(&manager->dongles[i].mutex, NULL))
 		{
 			while (i > 0)
@@ -64,6 +66,7 @@ static int	init_coders(t_manager *manager)
 
 static int	init_scheduler(t_manager *manager)
 {
+	manager->start_time = get_start_time();
 	manager->scheduler_cond_flag = 0;
 	manager->heap_mutex_flag = 0;
 	manager->heap.size = 0;

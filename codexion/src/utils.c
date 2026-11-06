@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/23 01:29:42 by victode-          #+#    #+#             */
-/*   Updated: 2026/11/05 19:21:56 by victode-         ###   ########.fr       */
+/*   Updated: 2026/11/06 00:34:44 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ long	get_time(void)
 long	get_current_time(t_manager *manager)
 {
 	long	time;
-	
+
 	time = get_time();
 	if (time < 0)
 		return (-1);

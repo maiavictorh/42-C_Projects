@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/28 17:56:34 by victode-          #+#    #+#             */
-/*   Updated: 2026/11/09 00:50:48 by victode-         ###   ########.fr       */
+/*   Updated: 2026/11/09 20:11:06 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,35 +67,6 @@ int	heap_insert(int scheduler, t_heap *heap, t_request *request)
 	return (1);
 }
 
-// (2 * i + 1) is used to represent the current item's left son.
-int	heap_pop(int scheduler, t_heap *heap, t_request *request)
-{
-	int			i;
-	int			right;
-	int			best;
-
-	if (!heap || !heap->size || !request)
-		return (0);
-	*request = heap->requests[0];
-	heap->requests[0] = heap->requests[heap->size - 1];
-	heap->size--;
-	i = 0;
-	while ((2 * i + 1) < heap->size)
-	{
-		best = 2 * i + 1;
-		right = 2 * i + 1 + 1;
-		if (right < heap->size && compare_requests(scheduler,
-				&heap->requests[2 * i + 1], &heap->requests[right]) > 0)
-			best = right;
-		if (compare_requests(scheduler,
-				&heap->requests[i], &heap->requests[best]) <= 0)
-			break ;
-		swap_requests(&heap->requests[i], &heap->requests[best]);
-		i = best;
-	}
-	return (1);
-}
-
 int	heap_remove(int scheduler, t_heap *heap, int index, t_request *request)
 {
 	int	parent;
@@ -106,11 +77,16 @@ int	heap_remove(int scheduler, t_heap *heap, int index, t_request *request)
 	heap->requests[index] = heap->requests[heap->size-- - 1];
 	if (index < heap->size)
 	{
-		if (index > 0)
+		while (index > 0)
+		{
 			parent = (index - 1) / 2;
 			if (compare_requests(scheduler,
-					&heap->requests[index], &heap->requests[parent]) < 0)
-				swap_requests(&heap->requests[index], &heap->requests[parent]);
+					&heap->requests[index], &heap->requests[parent]) >= 0)
+				break ;
+			swap_requests(&heap->requests[index], &heap->requests[parent]);
+			index = parent;
+		}
+		restore_priority(scheduler, index, heap);
 	}
 	return (1);
 }

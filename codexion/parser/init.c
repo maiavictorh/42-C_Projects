@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/22 15:25:38 by victode-          #+#    #+#             */
-/*   Updated: 2026/11/06 12:31:50 by victode-         ###   ########.fr       */
+/*   Updated: 2026/11/09 23:19:27 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ static int	init_scheduler(t_manager *manager)
 {
 	manager->sequence = 0;
 	manager->start_time = get_time();
+	manager->running = 0;
 	manager->scheduler_cond_flag = 0;
 	manager->heap_mutex_flag = 0;
 	manager->heap.size = 0;

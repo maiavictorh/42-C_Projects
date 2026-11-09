@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/16 15:49:16 by victode-          #+#    #+#             */
-/*   Updated: 2026/11/09 00:37:50 by victode-         ###   ########.fr       */
+/*   Updated: 2026/11/09 23:21:07 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ typedef struct s_manager
 	int				heap_mutex_flag;
 
 	long			start_time;
+	int				running;
 
 }	t_manager;
 
@@ -121,11 +122,16 @@ t_manager	*init_manager(int *data);
 void		clear_manager(t_manager *manager);
 long		get_time(void);
 long		get_current_time(t_manager *manager);
-void		swap_requests(t_request *request_1, t_request *request_2);
 
 /* = = = = = = = = Scheduler = = = = = = = = */
-int			heap_insert(int scheduler, t_heap *heap, t_request *request);
-int			heap_pop(int scheduler, t_heap *heap, t_request *request);
 int			create_request(t_coder *coder);
+int			heap_insert(int scheduler, t_heap *heap, t_request *request);
+int			heap_remove(int scheduler,
+				t_heap *heap, int index, t_request *request);
+int			compare_requests(int scheduler,
+				t_request *request_1, t_request *request_2);
+void		swap_requests(t_request *request_1, t_request *request_2);
+void		restore_priority(int scheduler, int index, t_heap *heap);
+int			is_dongle_available(t_request *request, long current_time);
 
 #endif

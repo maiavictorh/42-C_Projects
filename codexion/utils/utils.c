@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/23 01:29:42 by victode-          #+#    #+#             */
-/*   Updated: 2026/11/09 00:35:33 by victode-         ###   ########.fr       */
+/*   Updated: 2026/11/09 14:47:08 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,4 @@ long	get_current_time(t_manager *manager)
 	if (time < 0)
 		return (-1);
 	return (time - manager->start_time);
-}
-
-void	swap_requests(t_request *request_1, t_request *request_2)
-{
-	t_request	temp;
-
-	temp = *request_1;
-	*request_1 = *request_2;
-	*request_2 = temp;
 }

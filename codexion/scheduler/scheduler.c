@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/03 17:37:27 by victode-          #+#    #+#             */
-/*   Updated: 2026/11/09 00:20:42 by victode-         ###   ########.fr       */
+/*   Updated: 2026/11/09 23:40:23 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	create_request(t_coder *coder)
 	manager = coder->data;
 	pthread_mutex_lock(&manager->heap_mutex);
 	if (coder->request_status != RS_IDLE)
-		return (0);
+		return (pthread_mutex_unlock(&manager->heap_mutex), 0);
 	current_time = get_current_time(manager);
 	if (current_time < 0)
 		return (pthread_mutex_unlock(&manager->heap_mutex), 0);
@@ -49,16 +49,52 @@ int	wait_for_grant(t_coder *coder)
 	return (1);
 }
 
-int	is_dongle_available(t_request *request, long current_time)
+int	get_best_request(t_manager *manager)
 {
-	t_dongle	*left;
-	t_dongle	*right;
+	int		i;
+	int		best;
+	long	current_time;
 
-	left = request->coder->left_dongle;
-	right = request->coder->right_dongle;
-	return (!left->in_use && !right->in_use
-		&& left->available_at < current_time
-		&& right->available_at < current_time);
+	i = 0;
+	best = -1;
+	current_time = get_current_time(manager);
+	if (current_time < 0)
+		return (-1);
+	while (i < manager->heap.size)
+	{
+		if (is_dongle_available(&manager->heap.requests[i], current_time))
+		{
+			if (best == -1)
+				best = i;
+			else if (compare_requests(manager->scheduler,
+					&manager->heap.requests[i],
+					&manager->heap.requests[best]) < 0)
+				best = i;
+		}
+		i++;
+	}
+	return (best);
 }
 
-void	scheduler(t_manager *manager);
+void	scheduler(t_manager *manager)
+{
+	int			best;
+	t_request	request;
+
+	while (manager->running)
+	{
+		pthread_mutex_lock(&manager->heap_mutex);
+		best = get_best_request(manager);
+		if (best != -1)
+		{
+			heap_remove(manager->scheduler, &manager->heap, best, &request);
+			request.coder->left_dongle->in_use = 1;
+			request.coder->right_dongle->in_use = 1;
+			request.coder->request_status = RS_GRANTED;
+			pthread_cond_broadcast(&manager->scheduler_cond);
+		}
+		else
+			pthread_cond_wait(&manager->scheduler_cond, &manager->heap_mutex);
+		pthread_mutex_unlock(&manager->heap_mutex);
+	}
+}

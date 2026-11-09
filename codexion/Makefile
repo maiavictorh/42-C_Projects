@@ -6,7 +6,7 @@
 #    By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/09/16 15:47:34 by victode-          #+#    #+#              #
-#    Updated: 2026/11/06 13:39:27 by victode-         ###   ########.fr        #
+#    Updated: 2026/11/09 15:03:08 by victode-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,9 @@
 NAME= codexion
 
 # Source files and objects
-SRCS= codexion.c src/parser.c src/init.c src/utils.c src/heap.c src/scheduler.c
+SRCS= codexion.c parser/parser.c parser/init.c \
+		scheduler/heap.c scheduler/scheduler.c \
+		utils/utils.c utils/scheduler_utils.c \
 
 OBJS= $(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/28 17:56:34 by victode-          #+#    #+#             */
-/*   Updated: 2026/11/03 17:37:12 by victode-         ###   ########.fr       */
+/*   Updated: 2026/11/09 00:50:48 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,35 +45,26 @@ int	compare_requests(int scheduler, t_request *request_1, t_request *request_2)
 	return (0);
 }
 
-static void	swap_requests(t_request *request_1, t_request *request_2)
-{
-	t_request	temp;
-
-	temp = *request_1;
-	*request_1 = *request_2;
-	*request_2 = temp;
-}
-
-void	heap_insert(int scheduler, t_heap *heap, t_request *request)
+int	heap_insert(int scheduler, t_heap *heap, t_request *request)
 {
 	int			i;
 	int			parent;
 
-	if (heap->size < heap->capacity)
+	if (heap->size >= heap->capacity)
+		return (0);
+	heap->requests[heap->size] = *request;
+	heap->size++;
+	i = heap->size - 1;
+	while (i > 0)
 	{
-		heap->requests[heap->size] = *request;
-		heap->size++;
-		i = heap->size - 1;
-		while (i > 0)
-		{
-			parent = (i - 1) / 2;
-			if (compare_requests(scheduler,
-					&heap->requests[i], &heap->requests[parent]) >= 0)
-				break ;
-			swap_requests(&heap->requests[i], &heap->requests[parent]);
-			i = parent;
-		}
+		parent = (i - 1) / 2;
+		if (compare_requests(scheduler,
+				&heap->requests[i], &heap->requests[parent]) >= 0)
+			break ;
+		swap_requests(&heap->requests[i], &heap->requests[parent]);
+		i = parent;
 	}
+	return (1);
 }
 
 // (2 * i + 1) is used to represent the current item's left son.
@@ -101,6 +92,25 @@ int	heap_pop(int scheduler, t_heap *heap, t_request *request)
 			break ;
 		swap_requests(&heap->requests[i], &heap->requests[best]);
 		i = best;
+	}
+	return (1);
+}
+
+int	heap_remove(int scheduler, t_heap *heap, int index, t_request *request)
+{
+	int	parent;
+
+	if (!heap->size || index >= heap->size)
+		return (0);
+	*request = heap->requests[index];
+	heap->requests[index] = heap->requests[heap->size-- - 1];
+	if (index < heap->size)
+	{
+		if (index > 0)
+			parent = (index - 1) / 2;
+			if (compare_requests(scheduler,
+					&heap->requests[index], &heap->requests[parent]) < 0)
+				swap_requests(&heap->requests[index], &heap->requests[parent]);
 	}
 	return (1);
 }

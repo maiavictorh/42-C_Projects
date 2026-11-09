@@ -6,7 +6,7 @@
 #    By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/09/16 15:47:34 by victode-          #+#    #+#              #
-#    Updated: 2026/11/03 17:57:16 by victode-         ###   ########.fr        #
+#    Updated: 2026/11/06 13:39:27 by victode-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 NAME= codexion
 
 # Source files and objects
-SRCS= codexion.c src/parser.c src/init.c src/utils.c src/scheduler.c
+SRCS= codexion.c src/parser.c src/init.c src/utils.c src/heap.c src/scheduler.c
 
 OBJS= $(SRCS:.c=.o)
 
@@ -33,11 +33,11 @@ $(NAME): $(OBJS)
 
 fifo: all clean
 	clear
-	valgrind ./$(NAME) 5 600 100 100 100 4 100 fifo
+	valgrind ./$(NAME) 5 800 200 100 100 4 100 fifo
 
 edf: all clean
 	clear
-	valgrind ./$(NAME) 5 600 100 100 100 4 100 "edf"
+	valgrind ./$(NAME) 5 800 200 100 100 4 100 "edf"
 
 # Compile files into objects
 %.o: %.c

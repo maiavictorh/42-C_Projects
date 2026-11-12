@@ -1,0 +1,92 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   heap.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/10/28 17:56:34 by victode-          #+#    #+#             */
+/*   Updated: 2026/11/09 20:11:06 by victode-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <codexion.h>
+
+static int	compare_time(t_request *request_1, t_request *request_2)
+{
+	if (request_1->request_time < request_2->request_time)
+		return (-1);
+	else if (request_1->request_time > request_2->request_time)
+		return (1);
+	else
+	{
+		if (request_1->sequence < request_2->sequence)
+			return (-1);
+		else if (request_1->sequence > request_2->sequence)
+			return (1);
+	}
+	return (0);
+}
+
+// Compares two requests: -1 if first has priority, 1 if second has priority.
+int	compare_requests(int scheduler, t_request *request_1, t_request *request_2)
+{
+	if (scheduler == FIFO)
+		return (compare_time(request_1, request_2));
+	else if (scheduler == EDF)
+	{
+		if (request_1->deadline < request_2->deadline)
+			return (-1);
+		else if (request_1->deadline > request_2->deadline)
+			return (1);
+		else
+			return (compare_time(request_1, request_2));
+	}
+	return (0);
+}
+
+int	heap_insert(int scheduler, t_heap *heap, t_request *request)
+{
+	int			i;
+	int			parent;
+
+	if (heap->size >= heap->capacity)
+		return (0);
+	heap->requests[heap->size] = *request;
+	heap->size++;
+	i = heap->size - 1;
+	while (i > 0)
+	{
+		parent = (i - 1) / 2;
+		if (compare_requests(scheduler,
+				&heap->requests[i], &heap->requests[parent]) >= 0)
+			break ;
+		swap_requests(&heap->requests[i], &heap->requests[parent]);
+		i = parent;
+	}
+	return (1);
+}
+
+int	heap_remove(int scheduler, t_heap *heap, int index, t_request *request)
+{
+	int	parent;
+
+	if (!heap->size || index >= heap->size)
+		return (0);
+	*request = heap->requests[index];
+	heap->requests[index] = heap->requests[heap->size-- - 1];
+	if (index < heap->size)
+	{
+		while (index > 0)
+		{
+			parent = (index - 1) / 2;
+			if (compare_requests(scheduler,
+					&heap->requests[index], &heap->requests[parent]) >= 0)
+				break ;
+			swap_requests(&heap->requests[index], &heap->requests[parent]);
+			index = parent;
+		}
+		restore_priority(scheduler, index, heap);
+	}
+	return (1);
+}

@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/22 15:25:38 by victode-          #+#    #+#             */
-/*   Updated: 2026/11/09 23:19:27 by victode-         ###   ########.fr       */
+/*   Updated: 2026/11/12 16:41:09 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ t_manager	*init_manager(int *data)
 	manager->heap.size = 0;
 	manager->heap.capacity = 0;
 	manager->num_coders = data[0];
+	if (manager->num_coders  < 1)
+		return (clear_manager(manager), NULL);
 	manager->time_to_burnout = data[1];
 	manager->time_to_compile = data[2];
 	manager->time_to_debug = data[3];

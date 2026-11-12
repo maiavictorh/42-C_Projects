@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/23 01:29:42 by victode-          #+#    #+#             */
-/*   Updated: 2026/11/09 14:47:08 by victode-         ###   ########.fr       */
+/*   Updated: 2026/11/12 15:43:22 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,16 @@
 
 void	clear_manager(t_manager *manager)
 {
+	int	i;
+	
 	if (!manager)
 		return ;
-	if (!manager->scheduler_cond_flag)
+	i = 0;
+	while (i < manager->num_coders)
+		pthread_mutex_destroy(&manager->dongles[i++].mutex);
+	if (manager->scheduler_cond_flag)
 		pthread_cond_destroy(&manager->scheduler_cond);
-	if (!manager->heap_mutex_flag)
+	if (manager->heap_mutex_flag)
 		pthread_mutex_destroy(&manager->heap_mutex);
 	free(manager->heap.requests);
 	free(manager->coders);

@@ -6,7 +6,7 @@
 #    By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/09/16 15:47:34 by victode-          #+#    #+#              #
-#    Updated: 2026/11/09 15:03:08 by victode-         ###   ########.fr        #
+#    Updated: 2026/11/12 16:41:54 by victode-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,6 @@ edf: all clean
 
 # Compile files into objects
 %.o: %.c
-	clear
 	$(CC_FLAGS) -c $< -o $@
 
 lint:

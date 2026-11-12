@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/16 15:49:16 by victode-          #+#    #+#             */
-/*   Updated: 2026/11/09 23:21:07 by victode-         ###   ########.fr       */
+/*   Updated: 2026/11/12 17:10:27 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define CODEXION_H
 
 # include <stdio.h>
-# include <limits.h> 
+# include <limits.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
@@ -75,6 +75,7 @@ typedef struct s_manager
 	t_coder			*coders;
 	t_dongle		*dongles;
 	pthread_t		monitor;
+	pthread_mutex_t	mutex;
 
 	t_heap			heap;
 	pthread_mutex_t	heap_mutex;

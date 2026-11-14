@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/16 15:49:16 by victode-          #+#    #+#             */
-/*   Updated: 2026/11/12 17:10:27 by victode-         ###   ########.fr       */
+/*   Updated: 2026/11/13 18:55:19 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,10 @@ typedef struct s_manager
 	t_dongle		*dongles;
 	pthread_t		monitor;
 	pthread_mutex_t	mutex;
+	pthread_cond_t	cond;
 
 	t_heap			heap;
-	pthread_mutex_t	heap_mutex;
-	pthread_cond_t	scheduler_cond;
 	int				sequence;
-	int				scheduler_cond_flag;
-	int				heap_mutex_flag;
 
 	long			start_time;
 	int				running;
@@ -99,7 +96,7 @@ typedef struct s_coder
 	pthread_t			thread;
 	t_dongle			*left_dongle;
 	t_dongle			*right_dongle;
-	t_manager			*data;
+	t_manager			*manager;
 	t_request_status	request_status;
 
 }	t_coder;
@@ -111,8 +108,6 @@ typedef struct s_dongle
 	int				in_use;
 	long			available_at;
 
-	pthread_mutex_t	mutex;
-
 }	t_dongle;
 
 /* = = = = = = = = Parser = = = = = = = = */
@@ -122,17 +117,26 @@ t_manager	*init_manager(int *data);
 /* = = = = = = = = Utils = = = = = = = = */
 void		clear_manager(t_manager *manager);
 long		get_time(void);
-long		get_current_time(t_manager *manager);
+long		get_elapsed_time(t_manager *manager);
+void		log_message(t_coder *coder, char *message);
+int			is_running(t_manager *manager);
 
-/* = = = = = = = = Scheduler = = = = = = = = */
+/* = = = = = = = = Coder = = = = = = = = */
+int			compile(t_coder *coder);
+int			debug(t_coder *coder);
+int			refactor(t_coder *coder);
+void		*coder_routine(void *arg);
+
+void		swap_requests(t_request *request_1, t_request *request_2);
+int			is_dongle_available(t_request *request, long current_time);
 int			create_request(t_coder *coder);
-int			heap_insert(int scheduler, t_heap *heap, t_request *request);
-int			heap_remove(int scheduler,
-				t_heap *heap, int index, t_request *request);
+int			get_best_request(t_manager *manager);
+void		restore_priority(int scheduler, int index, t_heap *heap);
+
+/* = = = = = = = = Heap = = = = = = = = */
 int			compare_requests(int scheduler,
 				t_request *request_1, t_request *request_2);
-void		swap_requests(t_request *request_1, t_request *request_2);
-void		restore_priority(int scheduler, int index, t_heap *heap);
-int			is_dongle_available(t_request *request, long current_time);
+int			heap_insert(int scheduler, t_heap *heap, t_request *request);
+int			heap_remove(int scheduler, t_heap *heap, int index);
 
 #endif

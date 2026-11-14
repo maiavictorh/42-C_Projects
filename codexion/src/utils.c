@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/23 01:29:42 by victode-          #+#    #+#             */
-/*   Updated: 2026/11/12 15:43:22 by victode-         ###   ########.fr       */
+/*   Updated: 2026/11/13 21:18:55 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,8 @@
 
 void	clear_manager(t_manager *manager)
 {
-	int	i;
-	
 	if (!manager)
 		return ;
-	i = 0;
-	while (i < manager->num_coders)
-		pthread_mutex_destroy(&manager->dongles[i++].mutex);
-	if (manager->scheduler_cond_flag)
-		pthread_cond_destroy(&manager->scheduler_cond);
-	if (manager->heap_mutex_flag)
-		pthread_mutex_destroy(&manager->heap_mutex);
 	free(manager->heap.requests);
 	free(manager->coders);
 	free(manager->dongles);
@@ -40,7 +31,7 @@ long	get_time(void)
 	return (ts.tv_sec * 1000 + ts.tv_nsec / 1000000);
 }
 
-long	get_current_time(t_manager *manager)
+long	get_elapsed_time(t_manager *manager)
 {
 	long	time;
 
@@ -48,4 +39,25 @@ long	get_current_time(t_manager *manager)
 	if (time < 0)
 		return (-1);
 	return (time - manager->start_time);
+}
+
+void	log_message(t_coder *coder, char *message)
+{
+	pthread_mutex_lock(&coder->manager->mutex);
+	if (coder->manager->running)
+	{
+		printf("%ld %d %s\n", get_elapsed_time(coder->manager),
+		coder->id, message);
+	}
+	pthread_mutex_unlock(&coder->manager->mutex);
+}
+
+int	is_running(t_manager *manager)
+{
+	int	running;
+
+	pthread_mutex_lock(&manager->mutex);
+	running = manager->running;
+	pthread_mutex_unlock(&manager->mutex);
+	return (running);
 }

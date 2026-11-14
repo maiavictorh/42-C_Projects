@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/22 15:25:38 by victode-          #+#    #+#             */
-/*   Updated: 2026/11/12 16:41:09 by victode-         ###   ########.fr       */
+/*   Updated: 2026/11/13 21:04:04 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,6 @@ static int	init_dongles(t_manager *manager)
 		manager->dongles[i].cooldown = manager->dongle_cooldown;
 		manager->dongles[i].in_use = 0;
 		manager->dongles[i].available_at = 0;
-		if (pthread_mutex_init(&manager->dongles[i].mutex, NULL))
-		{
-			while (i > 0)
-				pthread_mutex_destroy(&manager->dongles[--i].mutex);
-			free(manager->dongles);
-			return (manager->dongles = NULL, 0);
-		}
 		i++;
 	}
 	return (1);
@@ -57,7 +50,7 @@ static int	init_coders(t_manager *manager)
 			manager->coders[i].right_dongle = &manager->dongles[0];
 		else
 			manager->coders[i].right_dongle = &manager->dongles[i + 1];
-		manager->coders[i].data = manager;
+		manager->coders[i].manager = manager;
 		manager->coders[i].request_status = RS_IDLE;
 		i++;
 	}
@@ -69,19 +62,11 @@ static int	init_scheduler(t_manager *manager)
 	manager->sequence = 0;
 	manager->start_time = get_time();
 	manager->running = 0;
-	manager->scheduler_cond_flag = 0;
-	manager->heap_mutex_flag = 0;
 	manager->heap.size = 0;
 	manager->heap.capacity = manager->num_coders;
 	manager->heap.requests = malloc(sizeof(t_request) * manager->heap.capacity);
 	if (!manager->heap.requests)
 		return (0);
-	if (pthread_mutex_init(&manager->heap_mutex, NULL))
-		return (0);
-	manager->heap_mutex_flag = 1;
-	if (pthread_cond_init(&manager->scheduler_cond, NULL))
-		return (0);
-	manager->scheduler_cond_flag = 1;
 	return (1);
 }
 

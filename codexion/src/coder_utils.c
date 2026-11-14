@@ -1,51 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scheduler.c                                        :+:      :+:    :+:   */
+/*   coder_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/03 17:37:27 by victode-          #+#    #+#             */
-/*   Updated: 2026/11/09 23:40:23 by victode-         ###   ########.fr       */
+/*   Updated: 2026/11/13 18:56:22 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <codexion.h>
+
+void	swap_requests(t_request *request_1, t_request *request_2)
+{
+	t_request	temp;
+
+	temp = *request_1;
+	*request_1 = *request_2;
+	*request_2 = temp;
+}
+
+int	is_dongle_available(t_request *request, long current_time)
+{
+	t_dongle	*left;
+	t_dongle	*right;
+
+	left = request->coder->left_dongle;
+	right = request->coder->right_dongle;
+	return (!left->in_use && !right->in_use
+		&& left->available_at <= current_time
+		&& right->available_at <= current_time);
+}
 
 int	create_request(t_coder *coder)
 {
 	long		current_time;
 	t_request	request;
 	t_manager	*manager;
-
+	
 	manager = coder->data;
-	pthread_mutex_lock(&manager->heap_mutex);
-	if (coder->request_status != RS_IDLE)
-		return (pthread_mutex_unlock(&manager->heap_mutex), 0);
-	current_time = get_current_time(manager);
-	if (current_time < 0)
-		return (pthread_mutex_unlock(&manager->heap_mutex), 0);
+	current_time = get_elapsed_time(manager);
 	request.coder = coder;
 	request.request_time = current_time;
 	request.deadline = coder->last_compile_start + manager->time_to_burnout;
 	request.sequence = manager->sequence++;
 	if (!heap_insert(manager->scheduler, &manager->heap, &request))
-		return (pthread_mutex_unlock(&manager->heap_mutex), 0);
+	return (0);
 	coder->request_status = RS_WAITING;
-	pthread_cond_signal(&manager->scheduler_cond);
-	pthread_mutex_unlock(&manager->heap_mutex);
-	return (1);
-}
-
-int	wait_for_grant(t_coder *coder)
-{
-	t_manager	*manager;
-
-	manager = coder->data;
-	pthread_mutex_lock(&manager->heap_mutex);
-	while (coder->request_status != RS_GRANTED)
-		pthread_cond_wait(&manager->scheduler_cond, &manager->heap_mutex);
-	pthread_mutex_unlock(&manager->heap_mutex);
 	return (1);
 }
 
@@ -57,7 +59,7 @@ int	get_best_request(t_manager *manager)
 
 	i = 0;
 	best = -1;
-	current_time = get_current_time(manager);
+	current_time = get_elapsed_time(manager);
 	if (current_time < 0)
 		return (-1);
 	while (i < manager->heap.size)
@@ -76,25 +78,25 @@ int	get_best_request(t_manager *manager)
 	return (best);
 }
 
-void	scheduler(t_manager *manager)
+void	restore_priority(int scheduler, int index, t_heap *heap)
 {
-	int			best;
-	t_request	request;
+	int	left;
+	int	right;
+	int	best;
 
-	while (manager->running)
+	left = 2 * index + 1;
+	while (left < heap->size)
 	{
-		pthread_mutex_lock(&manager->heap_mutex);
-		best = get_best_request(manager);
-		if (best != -1)
-		{
-			heap_remove(manager->scheduler, &manager->heap, best, &request);
-			request.coder->left_dongle->in_use = 1;
-			request.coder->right_dongle->in_use = 1;
-			request.coder->request_status = RS_GRANTED;
-			pthread_cond_broadcast(&manager->scheduler_cond);
-		}
-		else
-			pthread_cond_wait(&manager->scheduler_cond, &manager->heap_mutex);
-		pthread_mutex_unlock(&manager->heap_mutex);
+		best = left;
+		right = left + 1;
+		if (right < heap->size && compare_requests(scheduler,
+				&heap->requests[left], &heap->requests[right]) > 0)
+			best = right;
+		if (compare_requests(scheduler,
+				&heap->requests[index], &heap->requests[best]) <= 0)
+			break ;
+		swap_requests(&heap->requests[index], &heap->requests[best]);
+		index = best;
+		left = 2 * index + 1;
 	}
 }

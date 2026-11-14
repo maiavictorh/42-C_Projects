@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/28 17:56:34 by victode-          #+#    #+#             */
-/*   Updated: 2026/11/09 20:11:06 by victode-         ###   ########.fr       */
+/*   Updated: 2026/11/13 18:49:32 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,12 @@ int	heap_insert(int scheduler, t_heap *heap, t_request *request)
 	return (1);
 }
 
-int	heap_remove(int scheduler, t_heap *heap, int index, t_request *request)
+int	heap_remove(int scheduler, t_heap *heap, int index)
 {
 	int	parent;
 
 	if (!heap->size || index >= heap->size)
 		return (0);
-	*request = heap->requests[index];
 	heap->requests[index] = heap->requests[heap->size-- - 1];
 	if (index < heap->size)
 	{

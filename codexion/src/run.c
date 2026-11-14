@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 16:54:10 by victode-          #+#    #+#             */
-/*   Updated: 2026/11/12 17:32:51 by victode-         ###   ########.fr       */
+/*   Updated: 2026/11/13 21:42:27 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	*monitor_routine(void *arg)
 				{
 					manager->running = 0;
 					burned_id = manager->coders[i].id;
-					burnout_time = get_current_time(manager);
+					burnout_time = get_elapsed_time(manager);
 					break ;
 				}
 			i++;
@@ -43,23 +43,25 @@ void	*monitor_routine(void *arg)
 		if (burned_id)
 		{
 			printf("%ld %d burned out\n", burnout_time, burned_id);
-			return (clear_manager(manager));
+			return (manager->running = 0, NULL);
 		}
 	}
+	return (NULL);
 }
 
-void	run(t_manager *manager)
+int	run(t_manager *manager)
 {
 	int	i;
 	
 	if (pthread_create(&manager->monitor, NULL, monitor_routine, manager))
-		return (clear_manager(manager));
+		return (1);
 	i = 0;
 	while (i < manager->num_coders)
 	{
 		if (pthread_create(&manager->coders[i].thread, NULL,
-			coder_routine, manager->coders[i]))
-			return (clear_manager(manager));
+			coder_routine, &manager->coders[i]))
+			return (1);
 		i++;
 	}
+	return (0);
 }

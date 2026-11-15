@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 17:23:06 by victode-          #+#    #+#             */
-/*   Updated: 2026/11/14 18:39:20 by victode-         ###   ########.fr       */
+/*   Updated: 2026/11/15 18:40:39 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	get_dongles(t_coder *coder, t_manager *manager)
 int	compile(t_coder *coder)
 {
 	t_manager	*manager;
-	
+
 	manager = coder->manager;
 	if (!get_dongles(coder, manager))
 		return (0);

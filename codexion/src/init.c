@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/22 15:25:38 by victode-          #+#    #+#             */
-/*   Updated: 2026/11/15 01:11:23 by victode-         ###   ########.fr       */
+/*   Updated: 2026/11/15 19:51:57 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static int	init_dongles(t_manager *manager)
 	while (i < manager->num_coders)
 	{
 		manager->dongles[i].id = i + 1;
-		manager->dongles[i].cooldown = manager->dongle_cooldown;
 		manager->dongles[i].in_use = 0;
 		manager->dongles[i].available_at = 0;
 		i++;
@@ -44,14 +43,12 @@ static int	init_coders(t_manager *manager)
 		manager->coders[i].id = i + 1;
 		manager->coders[i].compiles_done = 0;
 		manager->coders[i].last_compile_start = 0;
-		manager->coders[i].last_dongle_release = 0;
 		manager->coders[i].left_dongle = &manager->dongles[i];
 		if (i == manager->num_coders - 1)
 			manager->coders[i].right_dongle = &manager->dongles[0];
 		else
 			manager->coders[i].right_dongle = &manager->dongles[i + 1];
 		manager->coders[i].manager = manager;
-		manager->coders[i].request_status = RS_IDLE;
 		i++;
 	}
 	return (1);
@@ -65,7 +62,7 @@ static int	store_data(t_manager *manager, int *data)
 	manager->heap.size = 0;
 	manager->heap.capacity = 0;
 	manager->num_coders = data[0];
-	if (manager->num_coders  < 1)
+	if (manager->num_coders < 1)
 		return (0);
 	manager->time_to_burnout = data[1];
 	manager->time_to_compile = data[2];
@@ -80,24 +77,23 @@ static int	store_data(t_manager *manager, int *data)
 t_manager	*init_manager(int *data)
 {
 	t_manager	*manager;
-	
+
 	manager = malloc(sizeof(t_manager));
 	if (!manager)
 		return (NULL);
-	if (!store_data(manager, ))
+	if (pthread_mutex_init(&manager->mutex, NULL))
+		return (free(manager), NULL);
+	if (pthread_cond_init(&manager->cond, NULL))
+		return (pthread_mutex_destroy(&manager->mutex), free(manager), NULL);
+	if (!store_data(manager, data))
 		return (clear_manager(manager), NULL);
 	if (!init_dongles(manager))
 		return (clear_manager(manager), NULL);
 	if (!init_coders(manager))
 		return (clear_manager(manager), NULL);
-	if (pthread_mutex_init(&manager->mutex, NULL))
-		return (clear_manager(manager), NULL);
-	if (pthread_cond_init(&manager->cond, NULL))
-		return (clear_manager(manager));
 	manager->sequence = 0;
 	manager->start_time = get_time();
 	manager->running = 1;
-	manager->heap.size = 0;
 	manager->heap.capacity = manager->num_coders;
 	manager->heap.requests = malloc(sizeof(t_request) * manager->heap.capacity);
 	if (!manager->heap.requests)

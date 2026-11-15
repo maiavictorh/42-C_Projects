@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/03 17:37:27 by victode-          #+#    #+#             */
-/*   Updated: 2026/11/14 18:40:01 by victode-         ###   ########.fr       */
+/*   Updated: 2026/11/15 19:53:25 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,14 @@ int	create_request(t_coder *coder)
 	long		current_time;
 	t_request	request;
 	t_manager	*manager;
-	
+
 	manager = coder->manager;
 	current_time = get_elapsed_time(manager);
 	request.coder = coder;
 	request.request_time = current_time;
 	request.deadline = coder->last_compile_start + manager->time_to_burnout;
 	request.sequence = manager->sequence++;
-	if (!heap_insert(manager->scheduler, &manager->heap, &request))
-	return (0);
-	coder->request_status = RS_WAITING;
-	return (1);
+	return (heap_insert(manager->scheduler, &manager->heap, &request))
 }
 
 int	get_best_request(t_manager *manager)

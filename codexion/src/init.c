@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/22 15:25:38 by victode-          #+#    #+#             */
-/*   Updated: 2026/11/13 21:04:04 by victode-         ###   ########.fr       */
+/*   Updated: 2026/11/15 01:11:23 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,26 +57,8 @@ static int	init_coders(t_manager *manager)
 	return (1);
 }
 
-static int	init_scheduler(t_manager *manager)
+static int	store_data(t_manager *manager, int *data)
 {
-	manager->sequence = 0;
-	manager->start_time = get_time();
-	manager->running = 0;
-	manager->heap.size = 0;
-	manager->heap.capacity = manager->num_coders;
-	manager->heap.requests = malloc(sizeof(t_request) * manager->heap.capacity);
-	if (!manager->heap.requests)
-		return (0);
-	return (1);
-}
-
-t_manager	*init_manager(int *data)
-{
-	t_manager	*manager;
-
-	manager = malloc(sizeof(t_manager));
-	if (!manager)
-		return (NULL);
 	manager->dongles = NULL;
 	manager->coders = NULL;
 	manager->heap.requests = NULL;
@@ -84,7 +66,7 @@ t_manager	*init_manager(int *data)
 	manager->heap.capacity = 0;
 	manager->num_coders = data[0];
 	if (manager->num_coders  < 1)
-		return (clear_manager(manager), NULL);
+		return (0);
 	manager->time_to_burnout = data[1];
 	manager->time_to_compile = data[2];
 	manager->time_to_debug = data[3];
@@ -92,11 +74,33 @@ t_manager	*init_manager(int *data)
 	manager->compiles_required = data[5];
 	manager->dongle_cooldown = data[6];
 	manager->scheduler = data[7];
+	return (1);
+}
+
+t_manager	*init_manager(int *data)
+{
+	t_manager	*manager;
+	
+	manager = malloc(sizeof(t_manager));
+	if (!manager)
+		return (NULL);
+	if (!store_data(manager, ))
+		return (clear_manager(manager), NULL);
 	if (!init_dongles(manager))
 		return (clear_manager(manager), NULL);
 	if (!init_coders(manager))
 		return (clear_manager(manager), NULL);
-	if (!init_scheduler(manager))
+	if (pthread_mutex_init(&manager->mutex, NULL))
+		return (clear_manager(manager), NULL);
+	if (pthread_cond_init(&manager->cond, NULL))
+		return (clear_manager(manager));
+	manager->sequence = 0;
+	manager->start_time = get_time();
+	manager->running = 1;
+	manager->heap.size = 0;
+	manager->heap.capacity = manager->num_coders;
+	manager->heap.requests = malloc(sizeof(t_request) * manager->heap.capacity);
+	if (!manager->heap.requests)
 		return (clear_manager(manager), NULL);
 	return (manager);
 }

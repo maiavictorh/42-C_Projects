@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 16:54:10 by victode-          #+#    #+#             */
-/*   Updated: 2026/11/13 21:42:27 by victode-         ###   ########.fr       */
+/*   Updated: 2026/11/14 18:57:09 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,14 @@ int	run(t_manager *manager)
 	int	i;
 	
 	if (pthread_create(&manager->monitor, NULL, monitor_routine, manager))
-		return (1);
+		return (0);
 	i = 0;
 	while (i < manager->num_coders)
 	{
 		if (pthread_create(&manager->coders[i].thread, NULL,
 			coder_routine, &manager->coders[i]))
-			return (1);
+			return (0);
 		i++;
 	}
-	return (0);
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 17:23:06 by victode-          #+#    #+#             */
-/*   Updated: 2026/11/14 14:13:09 by victode-         ###   ########.fr       */
+/*   Updated: 2026/11/14 18:39:20 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,11 @@ void	*coder_routine(void *arg)
 	coder = (t_coder *)arg;
 	while (coder->manager->running)
 	{
-		if (!compile)
+		if (!compile(coder))
 			break ;
-		if (!debug)
+		if (!debug(coder))
 			break ;
-		if (!refactor)
+		if (!refactor(coder))
 			break ;
 	}
 	return (NULL);

@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/16 15:49:16 by victode-          #+#    #+#             */
-/*   Updated: 2026/11/13 18:55:19 by victode-         ###   ########.fr       */
+/*   Updated: 2026/11/14 18:57:36 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,11 @@ typedef struct s_dongle
 /* = = = = = = = = Parser = = = = = = = = */
 int			validate_args(int ac, char **av, int *result);
 t_manager	*init_manager(int *data);
+
+/* = = = = = = = = Main = = = = = = = = */
+
+void		*monitor_routine(void *arg);
+int			run(t_manager *manager);
 
 /* = = = = = = = = Utils = = = = = = = = */
 void		clear_manager(t_manager *manager);

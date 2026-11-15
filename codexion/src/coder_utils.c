@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/03 17:37:27 by victode-          #+#    #+#             */
-/*   Updated: 2026/11/13 18:56:22 by victode-         ###   ########.fr       */
+/*   Updated: 2026/11/14 18:40:01 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	create_request(t_coder *coder)
 	t_request	request;
 	t_manager	*manager;
 	
-	manager = coder->data;
+	manager = coder->manager;
 	current_time = get_elapsed_time(manager);
 	request.coder = coder;
 	request.request_time = current_time;

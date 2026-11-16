@@ -6,7 +6,7 @@
 #    By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/09/16 15:47:34 by victode-          #+#    #+#              #
-#    Updated: 2026/11/13 18:19:23 by victode-         ###   ########.fr        #
+#    Updated: 2026/11/16 17:49:27 by victode-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME= codexion
 
 # Source files and objects
 SRCS= codexion.c src/parser.c src/init.c src/utils.c src/run.c src/heap.c \
-		src/coder_routine.c src/coder_utils.c
+		src/coder_routine.c src/coder_utils.c src/clean.c
 
 OBJS= $(SRCS:.c=.o)
 

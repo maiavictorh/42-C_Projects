@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/16 15:49:16 by victode-          #+#    #+#             */
-/*   Updated: 2026/11/15 19:53:52 by victode-         ###   ########.fr       */
+/*   Updated: 2026/11/16 17:45:21 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ int			run(t_manager *manager);
 
 /* = = = = = = = = Utils = = = = = = = = */
 void		clear_manager(t_manager *manager);
+void		abort_run(t_manager *manager, int created);
 long		get_time(void);
 long		get_elapsed_time(t_manager *manager);
 void		log_message(t_coder *coder, char *message);

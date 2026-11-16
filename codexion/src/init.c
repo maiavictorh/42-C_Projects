@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/22 15:25:38 by victode-          #+#    #+#             */
-/*   Updated: 2026/11/15 19:51:57 by victode-         ###   ########.fr       */
+/*   Updated: 2026/11/16 17:43:41 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ t_manager	*init_manager(int *data)
 	if (!init_coders(manager))
 		return (clear_manager(manager), NULL);
 	manager->sequence = 0;
-	manager->start_time = get_time();
 	manager->running = 1;
 	manager->heap.capacity = manager->num_coders;
 	manager->heap.requests = malloc(sizeof(t_request) * manager->heap.capacity);

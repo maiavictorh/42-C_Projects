@@ -6,23 +6,11 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/23 01:29:42 by victode-          #+#    #+#             */
-/*   Updated: 2026/11/15 19:23:07 by victode-         ###   ########.fr       */
+/*   Updated: 2026/11/16 17:46:39 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <codexion.h>
-
-void	clear_manager(t_manager *manager)
-{
-	if (!manager)
-		return ;
-	pthread_mutex_destroy(&manager->mutex);
-	pthread_cond_destroy(&manager->cond);
-	free(manager->heap.requests);
-	free(manager->coders);
-	free(manager->dongles);
-	free(manager);
-}
 
 long	get_time(void)
 {
@@ -48,8 +36,8 @@ void	log_message(t_coder *coder, char *message)
 	pthread_mutex_lock(&coder->manager->mutex);
 	if (coder->manager->running)
 	{
-		printf("%ld %d %s\n", get_elapsed_time(coder->manager);
-		coder->id, message);
+		printf("%ld %d %s\n", get_elapsed_time(coder->manager),
+			coder->id, message);
 	}
 	pthread_mutex_unlock(&coder->manager->mutex);
 }

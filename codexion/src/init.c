@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/22 15:25:38 by victode-          #+#    #+#             */
-/*   Updated: 2026/11/16 17:43:41 by victode-         ###   ########.fr       */
+/*   Updated: 2026/11/20 13:18:00 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,6 @@ t_manager	*init_manager(int *data)
 		return (NULL);
 	if (pthread_mutex_init(&manager->mutex, NULL))
 		return (free(manager), NULL);
-	if (pthread_cond_init(&manager->cond, NULL))
-		return (pthread_mutex_destroy(&manager->mutex), free(manager), NULL);
 	if (!store_data(manager, data))
 		return (clear_manager(manager), NULL);
 	if (!init_dongles(manager))

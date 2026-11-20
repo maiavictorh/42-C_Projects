@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/16 15:49:16 by victode-          #+#    #+#             */
-/*   Updated: 2026/11/16 17:45:21 by victode-         ###   ########.fr       */
+/*   Updated: 2026/11/20 13:18:24 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ typedef struct s_manager
 	t_dongle		*dongles;
 	pthread_t		monitor;
 	pthread_mutex_t	mutex;
-	pthread_cond_t	cond;
 
 	t_heap			heap;
 	int				sequence;

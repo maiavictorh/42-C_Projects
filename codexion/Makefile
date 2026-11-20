@@ -6,7 +6,7 @@
 #    By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/09/16 15:47:34 by victode-          #+#    #+#              #
-#    Updated: 2026/11/16 17:49:27 by victode-         ###   ########.fr        #
+#    Updated: 2026/11/20 13:57:17 by victode-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,12 +15,12 @@ NAME= codexion
 
 # Source files and objects
 SRCS= codexion.c src/parser.c src/init.c src/utils.c src/run.c src/heap.c \
-		src/coder_routine.c src/coder_utils.c src/clean.c
+		src/coder_routine.c src/monitor.c src/coder_utils.c src/clean.c
 
 OBJS= $(SRCS:.c=.o)
 
 # Compile and Flag commands
-CC_FLAGS= cc -Wall -Wextra -Werror -I include
+CC_FLAGS= cc -Wall -Wextra -Werror -pthread -I include
 
 # Remove commands
 RM= rm -f
@@ -32,11 +32,11 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(CC_FLAGS) $(OBJS) -o $(NAME)
 
-fifo: all clean
+fifo: clean
 	clear
-	valgrind ./$(NAME) 5 800 200 100 100 4 100 fifo
+	valgrind --tool=helgrind ./$(NAME) 5 800 200 100 100 4 100 fifo
 
-edf: all clean
+edf: clean
 	clear
 	valgrind ./$(NAME) 5 800 200 100 100 4 100 "edf"
 

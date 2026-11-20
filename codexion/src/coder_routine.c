@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 17:23:06 by victode-          #+#    #+#             */
-/*   Updated: 2026/11/15 18:40:39 by victode-         ###   ########.fr       */
+/*   Updated: 2026/11/20 14:17:46 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,23 @@ static int	get_dongles(t_coder *coder, t_manager *manager)
 		best = get_best_request(manager);
 		if (best != -1 && manager->heap.requests[best].coder == coder)
 			break ;
-		pthread_cond_wait(&manager->cond, &manager->mutex);
+		pthread_mutex_unlock(&manager->mutex);
+		usleep(200);
+		pthread_mutex_lock(&manager->mutex);
 	}
 	heap_remove(manager->scheduler, &manager->heap, best);
 	coder->left_dongle->in_use = 1;
 	coder->right_dongle->in_use = 1;
 	coder->last_compile_start = get_elapsed_time(manager);
 	pthread_mutex_unlock(&manager->mutex);
+	log_message(coder, "has taken a dongle");
+	log_message(coder, "has taken a dongle");
 	return (1);
 }
 
 int	compile(t_coder *coder)
 {
+	long		current_time;
 	t_manager	*manager;
 
 	manager = coder->manager;
@@ -48,10 +53,10 @@ int	compile(t_coder *coder)
 	pthread_mutex_lock(&manager->mutex);
 	coder->left_dongle->in_use = 0;
 	coder->right_dongle->in_use = 0;
-	coder->left_dongle->available_at = get_time() + manager->dongle_cooldown;
-	coder->right_dongle->available_at = get_time() + manager->dongle_cooldown;
+	current_time = get_elapsed_time(manager);
+	coder->left_dongle->available_at = current_time + manager->dongle_cooldown;
+	coder->right_dongle->available_at = current_time + manager->dongle_cooldown;
 	coder->compiles_done++;
-	pthread_cond_broadcast(&manager->cond);
 	pthread_mutex_unlock(&manager->mutex);
 	return (is_running(manager));
 }
@@ -75,7 +80,9 @@ void	*coder_routine(void *arg)
 	t_coder		*coder;
 
 	coder = (t_coder *)arg;
-	while (coder->manager->running)
+	if (coder->manager->num_coders == 1)
+		return (log_message(coder, "has taken a dongle"), NULL);
+	while (is_running(coder->manager))
 	{
 		if (!compile(coder))
 			break ;

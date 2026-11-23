@@ -6,7 +6,7 @@
 #    By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/09/16 15:47:34 by victode-          #+#    #+#              #
-#    Updated: 2026/11/20 13:57:17 by victode-         ###   ########.fr        #
+#    Updated: 2026/11/23 18:15:01 by victode-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,20 +25,36 @@ CC_FLAGS= cc -Wall -Wextra -Werror -pthread -I include
 # Remove commands
 RM= rm -f
 
-# Rule: all = push_swap
+DEFAULT_TEST= 5 3000 200 200 200 5 400
+
+# Rule: all = codexion
 all: $(NAME)
 
 # Compile objects into binary
 $(NAME): $(OBJS)
 	$(CC_FLAGS) $(OBJS) -o $(NAME)
 
+# Runs the program using scheduler "FIFO"
 fifo: clean
 	clear
-	valgrind --tool=helgrind ./$(NAME) 5 800 200 100 100 4 100 fifo
+	valgrind ./$(NAME) $(DEFAULT_TEST) fifo
 
+# Runs the program using "FIFO" and helgrind
+hel_fifo: clean
+	clear
+	valgrind --tool=helgrind ./$(NAME) $(DEFAULT_TEST) "fifo"
+
+# Runs the program using scheduler "EDF"
 edf: clean
 	clear
-	valgrind ./$(NAME) 5 800 200 100 100 4 100 "edf"
+	valgrind ./$(NAME) $(DEFAULT_TEST) "edf"
+
+# Runs the program using "EDF" and helgrind
+hel_edf: clean
+	clear
+	valgrind --tool=helgrind ./$(NAME) $(DEFAULT_TEST) edf
+
+# Runs the program that will burnout
 
 # Compile files into objects
 %.o: %.c

@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 02:01:22 by victode-          #+#    #+#             */
-/*   Updated: 2026/11/12 15:20:03 by victode-         ###   ########.fr       */
+/*   Updated: 2026/11/25 01:05:28 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ static int	set_scheduler(char *arg, int *scheduler)
 	else if (!strcmp(arg, "edf"))
 		*scheduler = EDF;
 	else
-		return (write(2, "ERROR: scheduler must be 'fifo' or 'edf'\n", 41), 0);
+	{
+		printf("\33[31mERROR: scheduler must be 'fifo' or 'edf'\n\33[0m");
+		return (0);
+	}
 	return (1);
 }
 
@@ -51,13 +54,13 @@ int	validate_args(int ac, char **av, int *data)
 	int	j;
 
 	if (ac != 9)
-		return (write(2, "ERROR: wrong number of arguments!\n", 35), 0);
+		return (printf("\33[31mERROR: wrong number of arguments!\n\33[0m"), 0);
 	i = 1;
 	j = 0;
 	while (i < 8)
 	{
 		if (!validate_number(av[i++], &data[j++]))
-			return (write(2, "ERROR: Invalid argument!\n", 26), 0);
+			return (printf("\33[31mERROR: Invalid argument!\n\33[0m"), 0);
 	}
 	if (!set_scheduler(av[i], &data[j]))
 		return (0);

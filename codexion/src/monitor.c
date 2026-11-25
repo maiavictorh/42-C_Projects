@@ -6,7 +6,7 @@
 /*   By: victode- <victode-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/17 14:55:37 by victode-          #+#    #+#             */
-/*   Updated: 2026/11/20 13:25:08 by victode-         ###   ########.fr       */
+/*   Updated: 2026/11/25 01:13:52 by victode-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,17 @@ int	check_end(t_manager *manager)
 	if (!manager->running)
 		return (1);
 	if (all_done(manager))
-		return (manager->running = 0, 1);
+	{
+		manager->running = 0;
+		printf("\33[32mAll coders' compiles finished successfully!\33[0m\n");
+		return (1);
+	}
 	burn_id = 0;
 	if (check_burnout(manager, &burn_id, &burn_time))
-		return (printf("%ld %d burned out\n", burn_time, burn_id), 1);
+	{
+		printf("%ld %d \33[31mburned out\n\33[0m", burn_time, burn_id);
+		return (1);
+	}
 	return (0);
 }
 
